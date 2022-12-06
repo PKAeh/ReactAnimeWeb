@@ -28,7 +28,7 @@ function App(): JSX.Element {
           <Grid xs={8} sx={{ backgroundColor: 'red' }}>
             <div>Route</div>
           </Grid>
-          <Grid xs={4}>
+          <Grid xs={4} sx={{ backgroundColor: 'rgba(0,0,0,0.8)' }}>
             <Grid>
               <CategoryBar />
             </Grid>
