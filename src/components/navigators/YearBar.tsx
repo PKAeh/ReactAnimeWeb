@@ -1,3 +1,4 @@
+import { cursorTo } from 'readline'
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import { Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
@@ -74,7 +75,8 @@ const YearBar = (): JSX.Element => {
                 padding: '5px',
                 '&:hover': {
                   backgroundColor: '#fd2226',
-                  color: 'white'
+                  color: 'white',
+                  cursor: 'pointer'
                 }
               }}
             >
