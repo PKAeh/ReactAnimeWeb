@@ -59,7 +59,7 @@ const YearBar = (): JSX.Element => {
       </Grid>
       <Grid
         container
-        sx={{ textAlign: 'center', padding: '5px 13px 10px 0' }}
+        sx={{ textAlign: 'center', padding: '10px 13px 10px 0' }}
         columns={9}
         spacing={0.5}
       >
