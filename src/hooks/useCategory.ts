@@ -2,11 +2,11 @@ import { useQuery } from '@tanstack/react-query'
 import { getCategory } from '../services/categorys/categoryService'
 import type { ApiResponse } from '../services/apiResponse'
 import type { CategoryResponse } from '../services/categorys/categoryResponse'
-import type { AxiosError } from 'axios'
+import type { AxiosError, AxiosResponse } from 'axios'
 
 export const useCategoriesAll = (): {
   categoriesLoading: boolean
-  categories: ApiResponse<CategoryResponse> | undefined
+  categories: AxiosResponse<ApiResponse<CategoryResponse>> | undefined
   categoriesError: AxiosError<unknown, unknown> | null
 } => {
   getCategory()
@@ -15,7 +15,7 @@ export const useCategoriesAll = (): {
     data: categories,
     error: categoriesError
   } = useQuery<
-    ApiResponse<CategoryResponse>,
+    AxiosResponse<ApiResponse<CategoryResponse>>,
     AxiosError<unknown, unknown> | null
   >(['category'], () => getCategory())
 
