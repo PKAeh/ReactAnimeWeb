@@ -4,10 +4,12 @@ import ThemeProvider from '@mui/material/styles/ThemeProvider'
 import createTheme from '@mui/material/styles/createTheme'
 import './App.css'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { RouterProvider } from 'react-router-dom'
 import AnimeAppBar from './components/navigators/AnimeAppBar'
 import CategoryBar from './components/navigators/CategoryBar'
 import Footer from './components/navigators/Footer'
 import YearBar from './components/navigators/YearBar'
+import { router } from './routes/route'
 
 const queryClient = new QueryClient()
 
@@ -29,8 +31,8 @@ function App(): JSX.Element {
         <AnimeAppBar />
         <Container>
           <Grid container>
-            <Grid xs={8} sx={{ backgroundColor: 'red' }}>
-              <div>Route</div>
+            <Grid xs={8}>
+              <RouterProvider router={router} />
             </Grid>
             <Grid xs={4} sx={{ backgroundColor: 'rgba(0,0,0,0.8)' }}>
               <Grid>
