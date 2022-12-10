@@ -29,13 +29,13 @@ function App(): JSX.Element {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
         <AnimeAppBar />
-        <Container>
+        <Container sx={{ padding: '0 !important' }}>
           <Grid container sx={{ backgroundColor: 'rgba(0,0,0,0.8)' }}>
-            <Grid xs={8}>
+            <Grid xs={8.8}>
               <RouterProvider router={router} />
             </Grid>
             <Grid
-              xs={4}
+              xs={3.2}
               sx={{ borderLeft: '1px solid rgba(160,160, 160, 0.2)' }}
             >
               <Grid>

@@ -7,7 +7,7 @@ const Footer = (): JSX.Element => {
   const goToTop = (): void => window.scrollTo(0, 0)
 
   return (
-    <Container>
+    <Container sx={{ padding: '0 !important' }}>
       <Grid
         container
         sx={{
@@ -15,7 +15,8 @@ const Footer = (): JSX.Element => {
           padding: '15px 30px',
           color: 'white',
           backgroundColor: 'rgba(16, 17, 19,0.9)',
-          cursor: 'pointer'
+          cursor: 'pointer',
+          borderTop: '1px solid rgba(160,160, 160, 0.2)'
         }}
       >
         <Grid xs={10}>
