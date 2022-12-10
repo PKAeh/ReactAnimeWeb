@@ -34,7 +34,10 @@ function App(): JSX.Element {
             <Grid xs={8}>
               <RouterProvider router={router} />
             </Grid>
-            <Grid xs={4}>
+            <Grid
+              xs={4}
+              sx={{ borderLeft: '1px solid rgba(160,160, 160, 0.2)' }}
+            >
               <Grid>
                 <CategoryBar />
               </Grid>
