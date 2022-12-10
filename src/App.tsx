@@ -30,11 +30,11 @@ function App(): JSX.Element {
       <ThemeProvider theme={theme}>
         <AnimeAppBar />
         <Container>
-          <Grid container>
+          <Grid container sx={{ backgroundColor: 'rgba(0,0,0,0.8)' }}>
             <Grid xs={8}>
               <RouterProvider router={router} />
             </Grid>
-            <Grid xs={4} sx={{ backgroundColor: 'rgba(0,0,0,0.8)' }}>
+            <Grid xs={4}>
               <Grid>
                 <CategoryBar />
               </Grid>
