@@ -1,6 +1,5 @@
 import { Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
-import { fontSize } from '@mui/system'
 
 const HomePageTitle = (): JSX.Element => (
   <Grid
@@ -14,7 +13,8 @@ const HomePageTitle = (): JSX.Element => (
           fontWeight: '600',
           borderLeft: '3.5px solid #fd5529 ',
           paddingLeft: '13px',
-          lineHeight: '21px'
+          lineHeight: '21px',
+          color: 'white'
         }}
       >
         อนิเมะอัพเดทล่าสุด
