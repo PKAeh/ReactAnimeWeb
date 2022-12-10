@@ -9,7 +9,6 @@ export const useCategoriesAll = (): {
   categories: AxiosResponse<ApiResponse<CategoryResponse>> | undefined
   categoriesError: AxiosError<unknown, unknown> | null
 } => {
-  getCategory()
   const {
     isLoading: categoriesLoading,
     data: categories,
