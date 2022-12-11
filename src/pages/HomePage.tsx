@@ -16,7 +16,7 @@ const HomePage = (): JSX.Element => {
         <HomePageTitle />
       </Grid>
       <Grid sx={{ width: '100%' }}>
-        {lastAnime && <AnimeList data={lastAnime.data.data} />}
+        {lastAnime && <AnimeList data={lastAnime.data} />}
       </Grid>
     </Grid>
   )

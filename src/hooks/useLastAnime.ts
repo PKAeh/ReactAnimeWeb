@@ -4,22 +4,39 @@ import type { ApiResponse } from '../services/apiResponse'
 import type { AnimeResponse } from './../services/anime/animeResponse'
 import type { AxiosError, AxiosResponse } from 'axios'
 
-export const useLastAnime = (
-  page: number
-): {
+interface useLastAnimePram {
   lastAnimeLoading: boolean
-  lastAnime: AxiosResponse<ApiResponse<AnimeResponse>> | undefined
+  lastAnime: ApiResponse<AnimeResponse> | undefined
   lastAnimeError: AxiosError<unknown, unknown> | null
-} => {
-  const offset = (page - 1) * 20
+}
+
+export const useLastAnime = (page: number): useLastAnimePram => {
+  const setPage = page * 2
+
+  const offset = (setPage - 2) * 20
+  const offset2 = (setPage - 1) * 20
+
   const {
     isLoading: lastAnimeLoading,
     data: lastAnime,
     error: lastAnimeError
   } = useQuery<
-    AxiosResponse<ApiResponse<AnimeResponse>>,
-    AxiosError<unknown, unknown> | null
-  >(['lastAnime'], () => getLastAnime(offset))
+    AxiosResponse<ApiResponse<AnimeResponse>, unknown>[],
+    AxiosError<unknown, unknown>,
+    ApiResponse<AnimeResponse>,
+    string[]
+  >({
+    queryKey: [`animeLast-${page}`],
+    queryFn: () => Promise.all([getLastAnime(offset), getLastAnime(offset2)]),
+    select(
+      data: AxiosResponse<ApiResponse<AnimeResponse>>[]
+    ): ApiResponse<AnimeResponse> {
+      return {
+        ...data[0].data,
+        data: [...data[0].data.data, ...data[1].data.data]
+      }
+    }
+  })
 
   return {
     lastAnimeLoading,
