@@ -28,10 +28,22 @@ const theme = createTheme({
   }
 })
 
-const BasePagination = (): JSX.Element => (
+interface BasePaginationProps {
+  count: number
+  page: number
+  onChange?: (event: React.ChangeEvent<unknown>, page: number) => void
+}
+
+const BasePagination = ({
+  count,
+  page,
+  onChange
+}: BasePaginationProps): JSX.Element => (
   <ThemeProvider theme={theme}>
     <Pagination
-      count={10}
+      page={page}
+      onChange={onChange}
+      count={count}
       shape="rounded"
       size="large"
       color="primary"

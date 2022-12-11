@@ -1,4 +1,5 @@
 import Grid from '@mui/material/Unstable_Grid2'
+import { useEffect, useState } from 'react'
 import { BaseLoader } from '../components/BaseLoader'
 import BasePagination from '../components/BasePagination'
 import AnimeList from '../components/anime/AnimeList'
@@ -6,7 +7,21 @@ import HomePageTitle from '../components/homepage/HomePageTitle'
 import { useLastAnime } from '../hooks/useLastAnime'
 
 const HomePage = (): JSX.Element => {
-  const { lastAnimeLoading, lastAnime, lastAnimeError } = useLastAnime(1)
+  const [page, setpage] = useState<number>(1)
+  const [total, settotal] = useState<number>(0)
+  const { lastAnimeLoading, lastAnime, lastAnimeError } = useLastAnime(
+    page,
+    total
+  )
+  const count = Math.round(Math.min(lastAnime?.meta.count ?? 0, 10000) / 40)
+
+  const onChange = (event: React.ChangeEvent<unknown>, page: number): void => {
+    setpage(page)
+  }
+
+  useEffect(() => {
+    settotal(lastAnime?.meta.count ?? 0)
+  }, [lastAnime])
 
   if (lastAnimeLoading) {
     return <BaseLoader style={{ marginTop: '100px' }} />
@@ -19,7 +34,7 @@ const HomePage = (): JSX.Element => {
       <Grid sx={{ width: '100%' }}>
         {lastAnime && <AnimeList data={lastAnime.data} />}
       </Grid>
-      <BasePagination />
+      <BasePagination page={page} count={count} onChange={onChange} />
     </Grid>
   )
 }
