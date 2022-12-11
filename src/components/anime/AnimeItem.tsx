@@ -22,7 +22,8 @@ const AnimeItem = ({ data }: AnimeItemProps): JSX.Element => {
     setHoverPlayAnimeItem(false)
   }
 
-  const clickLike = (): void => {
+  const clickLike = (event: React.MouseEvent<HTMLButtonElement>): void => {
+    event.stopPropagation()
     if (favoriteStatus) {
       setFavoriteText('เพิ่มรายการที่ชอบ')
       setFavoriteStatus(false)
