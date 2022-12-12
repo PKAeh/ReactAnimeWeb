@@ -8,4 +8,14 @@ export interface ApiResponse<T> {
     next: string
     last: string
   }
+  included?: IncludedResponse[]
+}
+
+interface IncludedResponse {
+  id: string
+  type: string
+  attributes: {
+    slug: string
+    title: string
+  }
 }
