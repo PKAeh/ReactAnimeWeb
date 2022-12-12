@@ -1,7 +1,7 @@
 import { Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 import DetailAnimeTitleHeader from './DetailAnimeTitleHeader'
-import type { DetailAnimeResponse } from '../../services/detailAnime/detailAnimeResponse'
+import type { DetailAnimeResponse } from '../../../services/detailAnime/detailAnimeResponse'
 
 interface DetailAnimeHeaderProps {
   data: DetailAnimeResponse

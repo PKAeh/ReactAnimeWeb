@@ -1,10 +1,12 @@
 import Grid from '@mui/material/Unstable_Grid2'
 import { useParams } from 'react-router-dom'
-import DetailAnimeHeader from '../components/detailAnime/DetailAnimeHeader'
+import DetailAnimeHeader from '../components/detailAnime/detailAnimeHeader/DetailAnimeHeader'
+import DetailAnimeTitle from '../components/detailAnime/detailAnimeTitle/DetailAnimeTitle'
 import { useDetailAnime } from '../hooks/useDetailAnime'
 
 const DetailAnimePage = (): JSX.Element => {
   const { id } = useParams()
+
   const { detailAnimeLoading, detailAnime, detailAnimeError } = useDetailAnime(
     id ?? ''
   )
@@ -13,6 +15,9 @@ const DetailAnimePage = (): JSX.Element => {
   return (
     <Grid>
       {resp && <DetailAnimeHeader data={resp} />}
+      <Grid sx={{ borderBottom: '3px solid rgba(160,160, 160, 0.2)' }}>
+        {detailAnime && <DetailAnimeTitle data={detailAnime?.data} />}
+      </Grid>
       <Grid></Grid>
       <Grid></Grid>
       <Grid></Grid>

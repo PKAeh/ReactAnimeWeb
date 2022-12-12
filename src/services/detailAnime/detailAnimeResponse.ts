@@ -12,6 +12,7 @@ export interface DetailAnimeResponse {
     endDate: string
     popularityRank?: number
     ratingRank?: number
+    averageRating: string
     subtype?: string
     status?: string
     posterImage: {
