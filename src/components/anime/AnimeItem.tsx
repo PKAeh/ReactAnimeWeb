@@ -2,6 +2,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import { Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import type { AnimeResponse } from '../../services/anime/animeResponse'
 
 interface AnimeItemProps {
@@ -13,6 +14,7 @@ const AnimeItem = ({ data }: AnimeItemProps): JSX.Element => {
   const [favoriteText, setFavoriteText] = useState<string>('เพิ่มรายการที่ชอบ')
   const [favoriteStatus, setFavoriteStatus] = useState<boolean>(false)
   const [bgfavorite, setBgFavorite] = useState<string>('rgb(0,0,0)')
+  const navigate = useNavigate()
 
   const onMouseEnter = (): void => {
     setHoverPlayAnimeItem(true)
@@ -38,6 +40,7 @@ const AnimeItem = ({ data }: AnimeItemProps): JSX.Element => {
   }
 
   const clickToPage = (): void => {
+    navigate(`/anime/${data.id}`)
     console.log('หน้าอนิเมะ')
   }
   return (
