@@ -1,6 +1,5 @@
 import { Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
-import { Link } from 'react-router-dom'
 import DetailAnimeTitleHeader from './DetailAnimeTitleHeader'
 import type { DetailAnimeResponse } from '../../services/detailAnime/detailAnimeResponse'
 
