@@ -40,7 +40,9 @@ const AnimeItem = ({ data }: AnimeItemProps): JSX.Element => {
   }
 
   const clickToPage = (): void => {
+    window.scrollTo(0, 0)
     navigate(`/anime/${data.id}`)
+
     console.log('หน้าอนิเมะ')
   }
   return (
