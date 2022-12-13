@@ -36,7 +36,7 @@ const DetailAnimeTitle = ({ data }: DetailAnimeTitleProps): JSX.Element => {
           }}
         >
           <Typography sx={{ fontSize: '1.8em', wordBreak: 'break-all' }}>
-            {titleAnime} ตอนที่ 1-{episodeCount}
+            {titleAnime} ตอนที่ {episodeCount && `1-${episodeCount}`}
           </Typography>
         </Grid>
         <DetailAnimeTitleRating rating={rating} />
