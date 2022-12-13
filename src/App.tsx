@@ -29,7 +29,11 @@ function App(): JSX.Element {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
         <AnimeAppBar />
-        <Container sx={{ padding: '0 !important' }}>
+        <Container
+          sx={{
+            padding: '0 !important'
+          }}
+        >
           <Grid container sx={{ backgroundColor: 'rgba(0,0,0,0.8)' }}>
             <Grid xs={8.8}>
               <RouterProvider router={router} />
