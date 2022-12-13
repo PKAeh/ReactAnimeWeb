@@ -7,8 +7,8 @@ import HomePageTitle from '../components/homepage/HomePageTitle'
 import { useLastAnime } from '../hooks/useLastAnime'
 
 const HomePage = (): JSX.Element => {
-  const [page, setpage] = useState<number>(1)
-  const [total, settotal] = useState<number>(0)
+  const [page, setPage] = useState<number>(1)
+  const [total, setTotal] = useState<number>(0)
   const { lastAnimeLoading, lastAnime, lastAnimeError } = useLastAnime(
     page,
     total
@@ -16,11 +16,11 @@ const HomePage = (): JSX.Element => {
   const count = Math.round(Math.min(lastAnime?.meta.count ?? 0, 10000) / 40)
 
   const onChange = (event: React.ChangeEvent<unknown>, page: number): void => {
-    setpage(page)
+    setPage(page)
   }
 
   useEffect(() => {
-    settotal(lastAnime?.meta.count ?? 0)
+    setTotal(lastAnime?.meta.count ?? 0)
   }, [lastAnime])
 
   if (lastAnimeLoading) {
