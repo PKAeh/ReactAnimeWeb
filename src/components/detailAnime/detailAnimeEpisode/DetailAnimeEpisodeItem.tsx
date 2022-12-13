@@ -39,7 +39,7 @@ const DetailAnimeEpisodeItem = ({
           sx={{
             padding: '0 20px',
             fontWeight: 'bold',
-            width: '40px',
+            width: '50px',
             textAlign: 'center',
             color: 'rgb(190,190, 190)',
             cursor: 'default',
