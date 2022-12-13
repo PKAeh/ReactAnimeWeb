@@ -33,7 +33,8 @@ const DetailAnimeEpisode = ({
           sx={{
             bgcolor: 'rgba(180,10,10,0.7)',
             padding: '15px',
-            color: 'white'
+            color: 'white',
+            cursor: 'pointer'
           }}
         >
           <Typography>{nameAnime}</Typography>
