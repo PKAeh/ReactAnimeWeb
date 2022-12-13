@@ -32,7 +32,7 @@ export const CategoryList = (): JSX.Element => {
             sx={{
               color: 'rgb(160,160, 160)',
               '&:hover': {
-                color: '#fd2226',
+                color: '#fd5529',
                 cursor: 'pointer'
               }
             }}
