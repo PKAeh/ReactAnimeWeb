@@ -17,22 +17,24 @@ const DetailAnimeEpisode = ({
   const imageCoverAnime = detailAnime.attributes.posterImage.original
   return (
     <Grid sx={{ padding: '20px 25px 25px 25px' }}>
-      <Grid container>
+      <Grid container sx={{ alignItems: 'center' }}>
         <Grid
           sx={{
             bgcolor: 'rgb(180,10,10)',
-            padding: '15px',
+            padding: '11px',
             color: 'white',
             width: '100px'
           }}
         >
-          <Typography></Typography>
+          <Typography sx={{ textAlign: 'center', fontSize: '1.4em' }}>
+            ภาค
+          </Typography>
         </Grid>
         <Grid
           xs
           sx={{
             bgcolor: 'rgba(180,10,10,0.7)',
-            padding: '15px',
+            padding: '16px',
             color: 'white',
             cursor: 'pointer'
           }}
