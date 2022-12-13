@@ -73,7 +73,7 @@ const YearBar = (): JSX.Element => {
                 color: 'rgb(160,160, 160)',
                 padding: '5px',
                 '&:hover': {
-                  backgroundColor: '#fd2226',
+                  backgroundColor: '#fd5529',
                   color: 'white',
                   cursor: 'pointer'
                 }
