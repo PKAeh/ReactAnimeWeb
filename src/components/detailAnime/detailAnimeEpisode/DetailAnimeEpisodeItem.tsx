@@ -39,10 +39,11 @@ const DetailAnimeEpisodeItem = ({
           sx={{
             padding: '0 20px',
             fontWeight: 'bold',
-            width: '50px',
+            width: '40px',
             textAlign: 'center',
             color: 'rgb(190,190, 190)',
-            cursor: 'default'
+            cursor: 'default',
+            fontSize: '0.85em'
           }}
         >
           0 - {episode}
@@ -52,6 +53,9 @@ const DetailAnimeEpisodeItem = ({
         <Typography
           sx={{
             color: 'white',
+            fontSize: '0.9em',
+            borderLeft: '1px solid rgba(160,160, 160, 0.2)',
+            paddingLeft: '15px',
             '&:hover': {
               color: '#fd5529',
               cursor: 'pointer'
