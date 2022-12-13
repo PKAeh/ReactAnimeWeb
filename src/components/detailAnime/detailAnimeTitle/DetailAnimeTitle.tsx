@@ -23,7 +23,7 @@ const DetailAnimeTitle = ({ data }: DetailAnimeTitleProps): JSX.Element => {
           รูปภาพปกอนิเมะ
         </Grid>
       </Grid>
-      <Grid sx={{ width: '650px', paddingLeft: '20px' }}>
+      <Grid xs sx={{ paddingLeft: '20px' }}>
         <Grid
           sx={{
             paddingBottom: '10px',
