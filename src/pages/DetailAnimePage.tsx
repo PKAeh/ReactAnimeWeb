@@ -19,7 +19,7 @@ const DetailAnimePage = (): JSX.Element => {
   const resp = detailAnime?.data.data[0]
   const description = resp?.attributes.description ?? ''
   const countEpisode = resp?.attributes.episodeCount ?? 0
-  const count = Math.round(countEpisode / 20)
+  const count = countEpisode / 20
 
   console.log(count)
 
@@ -53,9 +53,11 @@ const DetailAnimePage = (): JSX.Element => {
           <DetailAnimeEpisode detailAnime={resp} episodeAnime={episodeAnime} />
         )}
       </Grid>
-      {countEpisode > 20 && (
-        <BasePagination page={page} count={count} onChange={onChange} />
-      )}
+      <Grid sx={{ paddingBottom: '25px' }}>
+        {countEpisode > 20 && (
+          <BasePagination page={page} count={count} onChange={onChange} />
+        )}
+      </Grid>
     </Grid>
   )
 }

@@ -34,7 +34,9 @@ const HomePage = (): JSX.Element => {
       <Grid sx={{ width: '100%' }}>
         {lastAnime && <AnimeList data={lastAnime.data} />}
       </Grid>
-      <BasePagination page={page} count={count} onChange={onChange} />
+      <Grid sx={{ padding: '15px 0' }}>
+        <BasePagination page={page} count={count} onChange={onChange} />
+      </Grid>
     </Grid>
   )
 }
