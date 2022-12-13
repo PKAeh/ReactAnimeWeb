@@ -1,5 +1,6 @@
 import Grid from '@mui/material/Unstable_Grid2'
 import { useParams } from 'react-router-dom'
+import { BaseLoader } from '../components/BaseLoader'
 import DetailAnimeHeader from '../components/detailAnime/detailAnimeHeader/DetailAnimeHeader'
 import DetailAnimeTitle from '../components/detailAnime/detailAnimeTitle/DetailAnimeTitle'
 import { useDetailAnime } from '../hooks/useDetailAnime'
@@ -11,6 +12,10 @@ const DetailAnimePage = (): JSX.Element => {
     id ?? ''
   )
   const resp = detailAnime?.data.data[0]
+
+  if (detailAnimeLoading) {
+    return <BaseLoader style={{ paddingTop: '100px' }} />
+  }
 
   return (
     <Grid>
