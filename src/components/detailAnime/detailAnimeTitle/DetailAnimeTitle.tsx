@@ -13,15 +13,20 @@ interface DetailAnimeTitleProps {
 const DetailAnimeTitle = ({ data }: DetailAnimeTitleProps): JSX.Element => {
   const titleAnime = data.data[0].attributes.canonicalTitle
   const episodeCount = data.data[0].attributes.episodeCount
+  const imageAnime = data.data[0].attributes.posterImage.original
   const rating = Math.floor(Number(data.data[0].attributes.averageRating)) / 10
 
   return (
     <Grid container sx={{ color: 'white', padding: '20px 25px 25px 25px' }}>
       <Grid>
-        <Grid sx={{ width: '180px', height: '250px', bgcolor: 'red' }}>
-          {' '}
-          รูปภาพปกอนิเมะ
-        </Grid>
+        <Grid
+          sx={{
+            width: '180px',
+            height: '250px',
+            backgroundImage: `url("${imageAnime}")`,
+            backgroundSize: 'cover'
+          }}
+        ></Grid>
       </Grid>
       <Grid xs sx={{ paddingLeft: '20px' }}>
         <Grid
