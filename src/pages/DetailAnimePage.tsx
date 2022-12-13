@@ -1,6 +1,8 @@
 import Grid from '@mui/material/Unstable_Grid2'
+import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { BaseLoader } from '../components/BaseLoader'
+import BasePagination from '../components/BasePagination'
 import DetailAnimeDescription from '../components/detailAnime/DetailAnimeDescription'
 import DetailAnimeEpisode from '../components/detailAnime/detailAnimeEpisode/DetailAnimeEpisode'
 import DetailAnimeHeader from '../components/detailAnime/detailAnimeHeader/DetailAnimeHeader'
@@ -9,20 +11,29 @@ import { useDetailAnime } from '../hooks/useDetailAnime'
 import { useDetailAnimeEpisodes } from '../hooks/useDetailAnimeEpisodes'
 
 const DetailAnimePage = (): JSX.Element => {
+  const [page, setPage] = useState<number>(1)
   const { id } = useParams()
   const { detailAnimeLoading, detailAnime, detailAnimeError } = useDetailAnime(
     id ?? ''
   )
   const resp = detailAnime?.data.data[0]
   const description = resp?.attributes.description ?? ''
+  const countEpisode = resp?.attributes.episodeCount ?? 0
+  const count = Math.round(countEpisode / 20)
+
+  console.log(count)
 
   const {
     detailAnimeEpisodesLoading,
     detailAnimeEpisodes,
     detailAnimeEpisodesError
-  } = useDetailAnimeEpisodes(1, id ?? '')
+  } = useDetailAnimeEpisodes(page, id ?? '')
 
   const episodeAnime = detailAnimeEpisodes?.data.data
+
+  const onChange = (event: React.ChangeEvent<unknown>, page: number): void => {
+    setPage(page)
+  }
 
   if (detailAnimeLoading || detailAnimeEpisodesLoading) {
     return <BaseLoader style={{ paddingTop: '100px' }} />
@@ -42,7 +53,9 @@ const DetailAnimePage = (): JSX.Element => {
           <DetailAnimeEpisode detailAnime={resp} episodeAnime={episodeAnime} />
         )}
       </Grid>
-      <Grid></Grid>
+      {countEpisode > 20 && (
+        <BasePagination page={page} count={count} onChange={onChange} />
+      )}
     </Grid>
   )
 }
