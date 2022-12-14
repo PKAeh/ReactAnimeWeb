@@ -1,9 +1,10 @@
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import { Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 const YearBar = (): JSX.Element => {
+  const { year: pageYear } = useParams()
   const years = [
     '2022',
     '2021',
@@ -75,8 +76,8 @@ const YearBar = (): JSX.Element => {
                 sx={{
                   fontSize: '0.8em',
                   fontWeight: '700',
-                  backgroundColor: 'black',
-                  color: 'rgb(160,160, 160)',
+                  backgroundColor: year === pageYear ? '#fd5529' : 'black',
+                  color: year === pageYear ? 'white' : 'rgb(160,160, 160)',
                   padding: '5px',
                   '&:hover': {
                     backgroundColor: '#fd5529',
