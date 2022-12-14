@@ -148,7 +148,7 @@ const AnimeItem = ({ data }: AnimeItemProps): JSX.Element => {
           sx={{
             textAlign: 'center',
             padding: '10px',
-            bgcolor: 'rgba(0,0,0,0.5)',
+            bgcolor: 'rgba(0,0,0,0.7)',
             fontWeight: 'bold',
             color: 'white',
             fontSize: '0.8em'
