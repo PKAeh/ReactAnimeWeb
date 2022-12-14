@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom'
+import AllCategoriesPage from '../pages/AllCategoriesPage'
 import DetailAnimePage from '../pages/DetailAnimePage'
 import HomePage from '../pages/HomePage'
 import Root from '../pages/Root'
@@ -25,6 +26,10 @@ export const router = createBrowserRouter([
       {
         path: '/year/:year',
         element: <YearAnimePage />
+      },
+      {
+        path: '/category/:slug',
+        element: <AllCategoriesPage />
       }
     ]
   }

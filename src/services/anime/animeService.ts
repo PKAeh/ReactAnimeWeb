@@ -27,3 +27,12 @@ export const getYearAnime = async (
   await axios.get<AxiosError, AxiosResponse<ApiResponse<AnimeResponse>>>(
     `https://kitsu.io/api/edge/anime?filter[seasonYear]=${year}&page[limit]=${limit}&sort=-user_count&page[offset]=${offset}`
   )
+
+export const getAllCategoryAnime = async (
+  offset: number,
+  limit: number,
+  category: string
+): Promise<AxiosResponse<ApiResponse<AnimeResponse>>> =>
+  await axios.get<AxiosError, AxiosResponse<ApiResponse<AnimeResponse>>>(
+    `https://kitsu.io/api/edge/anime?sort=-user_count&filter[categories]=${category}&page[limit]=${limit}&page[offset]=${offset}`
+  )

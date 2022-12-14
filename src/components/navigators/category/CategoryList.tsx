@@ -1,6 +1,7 @@
 import ArrowRightIcon from '@mui/icons-material/ArrowRight'
 import { Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
+import { Link } from 'react-router-dom'
 import { useCategoriesAll } from '../../../hooks/useCategory'
 import { BaseLoader } from '../../BaseLoader'
 
@@ -8,14 +9,14 @@ export const CategoryList = (): JSX.Element => {
   const { categoriesLoading, categories, categoriesError } = useCategoriesAll()
 
   const click = (): void => {
-    console.log('click')
+    window.scroll(0, 0)
   }
 
   if (categoriesLoading) {
     return <BaseLoader />
   }
   return (
-    <>
+    <Grid>
       {categories?.data.data.map((resp) => (
         <Grid
           container
@@ -26,30 +27,32 @@ export const CategoryList = (): JSX.Element => {
             borderBottom: '1px solid rgba(160,160, 160, 0.2)'
           }}
         >
-          <Grid
-            container
-            onClick={click}
-            sx={{
-              color: 'rgb(160,160, 160)',
-              '&:hover': {
-                color: '#fd5529',
-                cursor: 'pointer'
-              }
-            }}
-          >
-            <ArrowRightIcon sx={{ fontSize: '18px', color: 'white' }} />
-            <Typography
+          <Link to={`/category/${resp.attributes.slug}`}>
+            <Grid
+              container
+              onClick={click}
               sx={{
-                fontWeight: '500',
-                fontSize: '0.9em',
-                paddingLeft: '5px'
+                color: 'rgb(160,160, 160)',
+                '&:hover': {
+                  color: '#fd5529',
+                  cursor: 'pointer'
+                }
               }}
             >
-              {resp.attributes.title}
-            </Typography>
-          </Grid>
+              <ArrowRightIcon sx={{ fontSize: '18px', color: 'white' }} />
+              <Typography
+                sx={{
+                  fontWeight: '500',
+                  fontSize: '0.9em',
+                  paddingLeft: '5px'
+                }}
+              >
+                {resp.attributes.title}
+              </Typography>
+            </Grid>
+          </Link>
         </Grid>
       ))}
-    </>
+    </Grid>
   )
 }
