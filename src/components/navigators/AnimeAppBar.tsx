@@ -64,7 +64,7 @@ const AnimeAppBar = (): JSX.Element => (
           variant="h6"
           noWrap
           component="a"
-          href="/react-store/"
+          href="/"
           sx={{
             mr: 4,
             fontFamily: 'monospace',
