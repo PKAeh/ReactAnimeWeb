@@ -1,5 +1,6 @@
 import { Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
+import { Link } from 'react-router-dom'
 
 const HomePageTitle = (): JSX.Element => (
   <Grid
@@ -21,20 +22,22 @@ const HomePageTitle = (): JSX.Element => (
       </Typography>
     </Grid>
     <Grid>
-      <Typography
-        sx={{
-          backgroundColor: '#fd2226',
-          fontSize: '0.6em',
-          padding: '2px 8px',
-          color: 'white',
-          borderRadius: '3px',
-          '&:hover': {
-            cursor: 'pointer'
-          }
-        }}
-      >
-        ดูอนิเมะทั้งหมด
-      </Typography>
+      <Link to={'/anime'}>
+        <Typography
+          sx={{
+            backgroundColor: '#fd2226',
+            fontSize: '0.6em',
+            padding: '2px 8px',
+            color: 'white',
+            borderRadius: '3px',
+            '&:hover': {
+              cursor: 'pointer'
+            }
+          }}
+        >
+          ดูอนิเมะทั้งหมด
+        </Typography>
+      </Link>
     </Grid>
   </Grid>
 )
