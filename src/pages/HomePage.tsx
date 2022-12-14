@@ -13,7 +13,7 @@ const HomePage = (): JSX.Element => {
     page,
     total
   )
-  const count = Math.round(Math.min(lastAnime?.meta.count ?? 0, 10000) / 40)
+  const count = Math.ceil(Math.min(lastAnime?.meta.count ?? 0, 10000) / 40)
 
   const onChange = (event: React.ChangeEvent<unknown>, page: number): void => {
     setPage(page)
