@@ -1,6 +1,7 @@
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import { Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
+import { Link } from 'react-router-dom'
 
 const YearBar = (): JSX.Element => {
   const years = [
@@ -36,6 +37,10 @@ const YearBar = (): JSX.Element => {
     '1971'
   ]
 
+  const onClick = (): void => {
+    window.scrollTo(0, 0)
+  }
+
   return (
     <Grid sx={{ padding: '5px 10px 5px 20px' }}>
       <Grid
@@ -65,22 +70,25 @@ const YearBar = (): JSX.Element => {
       >
         {years.map((year) => (
           <Grid key={year} xs={3}>
-            <Typography
-              sx={{
-                fontSize: '0.8em',
-                fontWeight: '700',
-                backgroundColor: 'black',
-                color: 'rgb(160,160, 160)',
-                padding: '5px',
-                '&:hover': {
-                  backgroundColor: '#fd5529',
-                  color: 'white',
-                  cursor: 'pointer'
-                }
-              }}
-            >
-              {year}
-            </Typography>
+            <Link to={`/year/${year}`}>
+              <Typography
+                sx={{
+                  fontSize: '0.8em',
+                  fontWeight: '700',
+                  backgroundColor: 'black',
+                  color: 'rgb(160,160, 160)',
+                  padding: '5px',
+                  '&:hover': {
+                    backgroundColor: '#fd5529',
+                    color: 'white',
+                    cursor: 'pointer'
+                  }
+                }}
+                onClick={onClick}
+              >
+                {year}
+              </Typography>
+            </Link>
           </Grid>
         ))}
       </Grid>
