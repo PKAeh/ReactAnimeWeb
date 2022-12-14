@@ -1,4 +1,5 @@
-import { Container, Grid } from '@mui/material'
+import { Container } from '@mui/material'
+import Grid from '@mui/material/Unstable_Grid2'
 import { Outlet } from 'react-router-dom'
 import AnimeAppBar from '../components/navigators/AnimeAppBar'
 import CategoryBar from '../components/navigators/CategoryBar'
