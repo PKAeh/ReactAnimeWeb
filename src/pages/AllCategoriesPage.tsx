@@ -9,11 +9,10 @@ import { useAllCategoryAnime } from '../hooks/useAllCategoryAnime'
 
 const AllCategoriesPage = (): JSX.Element => {
   const [page, setPage] = useState<number>(1)
-  const { slug: category } = useParams()
-  console.log(category)
+  const { slug } = useParams()
 
   const { allCategoryAnimeLoading, allCategoryAnime, allCategoryAnimeError } =
-    useAllCategoryAnime(page, category ?? '')
+    useAllCategoryAnime(page, slug ?? '')
   const count = Math.ceil((allCategoryAnime?.meta.count ?? 0) / 40)
 
   const onChange = (event: React.ChangeEvent<unknown>, page: number): void => {
@@ -26,7 +25,7 @@ const AllCategoriesPage = (): JSX.Element => {
   return (
     <Grid sx={{ padding: '10px', width: '100%' }}>
       <Grid sx={{ padding: '15px 8px' }}>
-        <AllCategoryAnimeTitle category={category ?? ''} />
+        <AllCategoryAnimeTitle category={slug ?? ''} />
       </Grid>
       <Grid sx={{ width: '100%' }}>
         {allCategoryAnime && <AnimeList data={allCategoryAnime.data} />}
