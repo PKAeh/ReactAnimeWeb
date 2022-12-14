@@ -28,7 +28,7 @@ const DetailAnimeHeader = ({ data }: DetailAnimeHeaderProps): JSX.Element => {
         <Typography
           sx={{ padding: '0 15px', fontSize: '0.8em', fontWeight: 'bold' }}
         >{`>`}</Typography>
-        <DetailAnimeTitleHeader name={'Anime'} pathPage={'/'} />
+        <DetailAnimeTitleHeader name={'Anime'} pathPage={'/anime'} />
         <Typography
           sx={{ padding: '0 15px', fontSize: '0.8em', fontWeight: 'bold' }}
         >{`>`}</Typography>
