@@ -11,7 +11,6 @@ const ShowAllAnimePage = (): JSX.Element => {
   const { showAllAnimeLoading, showAllAnime, showAllAnimeError } =
     useShowAllAnime(page)
   const count = Math.ceil((showAllAnime?.meta.count ?? 0) / 40)
-  console.log(count)
 
   const onChange = (event: React.ChangeEvent<unknown>, page: number): void => {
     setPage(page)
