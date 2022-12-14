@@ -19,9 +19,7 @@ const DetailAnimePage = (): JSX.Element => {
   const resp = detailAnime?.data.data[0]
   const description = resp?.attributes.description ?? ''
   const countEpisode = resp?.attributes.episodeCount ?? 0
-  const count = countEpisode / 20
-
-  console.log(count)
+  const count = Math.ceil(countEpisode / 20)
 
   const {
     detailAnimeEpisodesLoading,
