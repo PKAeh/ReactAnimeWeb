@@ -22,7 +22,7 @@ const HomePageTitle = (): JSX.Element => (
       </Typography>
     </Grid>
     <Grid>
-      <Link to={'/anime'}>
+      <Link to={'/anime'} style={{ textDecoration: 'none' }}>
         <Typography
           sx={{
             backgroundColor: '#fd2226',

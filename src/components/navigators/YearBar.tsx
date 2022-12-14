@@ -71,7 +71,7 @@ const YearBar = (): JSX.Element => {
       >
         {years.map((year) => (
           <Grid key={year} xs={3}>
-            <Link to={`/year/${year}`}>
+            <Link to={`/year/${year}`} style={{ textDecoration: 'none' }}>
               <Typography
                 sx={{
                   fontSize: '0.8em',

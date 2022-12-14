@@ -2,10 +2,12 @@ import ArrowRightIcon from '@mui/icons-material/ArrowRight'
 import { Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 import { Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useCategoriesAll } from '../../../hooks/useCategory'
 import { BaseLoader } from '../../BaseLoader'
 
 export const CategoryList = (): JSX.Element => {
+  const { slug: category } = useParams()
   const { categoriesLoading, categories, categoriesError } = useCategoriesAll()
 
   const click = (): void => {
@@ -27,7 +29,10 @@ export const CategoryList = (): JSX.Element => {
             borderBottom: '1px solid rgba(160,160, 160, 0.2)'
           }}
         >
-          <Link to={`/category/${resp.attributes.slug}`}>
+          <Link
+            to={`/category/${resp.attributes.slug}`}
+            style={{ textDecoration: 'none' }}
+          >
             <Grid
               container
               onClick={click}
@@ -39,7 +44,12 @@ export const CategoryList = (): JSX.Element => {
                 }
               }}
             >
-              <ArrowRightIcon sx={{ fontSize: '18px', color: 'white' }} />
+              <ArrowRightIcon
+                sx={{
+                  fontSize: '18px',
+                  color: resp.attributes.slug === category ? '#fd5529' : 'white'
+                }}
+              />
               <Typography
                 sx={{
                   fontWeight: '500',
