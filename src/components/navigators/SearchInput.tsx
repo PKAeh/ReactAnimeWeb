@@ -58,7 +58,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }))
 
 const SearchInput = (): JSX.Element => {
-  const [searchText, setSearchTest] = useState<string>('')
+  const [searchText, setSearchText] = useState<string>('')
   const navigate = useNavigate()
 
   const onKeyDown = ({
@@ -78,7 +78,7 @@ const SearchInput = (): JSX.Element => {
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const value = event.target.value
-    setSearchTest(value)
+    setSearchText(value)
   }
 
   const changeToSearchPage = (search: string): void => {
@@ -86,6 +86,8 @@ const SearchInput = (): JSX.Element => {
       pathname: 'search',
       search: createSearchParams({ search }).toString()
     })
+
+    setSearchText('')
   }
   return (
     <Search>
@@ -96,6 +98,7 @@ const SearchInput = (): JSX.Element => {
         />
       </SearchIconWrapper>
       <StyledInputBase
+        value={searchText}
         // defaultValue={keyword}
         onChange={onChange}
         onKeyDown={onKeyDown}
