@@ -104,7 +104,7 @@ const AnimeAppBar = (): JSX.Element => (
         <Box>
           <Search>
             <SearchIconWrapper>
-              <SearchIcon />
+              <SearchIcon sx={{ fontSize: '1.2em', paddingRight: '1px' }} />
             </SearchIconWrapper>
             <StyledInputBase
               // defaultValue={keyword}
