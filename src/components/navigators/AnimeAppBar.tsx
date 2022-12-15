@@ -8,7 +8,7 @@ import SearchInput from './SearchInput'
 
 const AnimeAppBar = (): JSX.Element => (
   <AppBar position="sticky">
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" sx={{ padding: '0 0 0 20px !important' }}>
       <Toolbar disableGutters sx={{ alignContent: 'stretch' }}>
         <Typography
           variant="h6"
