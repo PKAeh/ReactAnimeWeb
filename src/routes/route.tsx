@@ -29,7 +29,7 @@ export const router = createBrowserRouter([
         element: <YearAnimePage />
       },
       {
-        path: '/category/:slug',
+        path: '/category',
         element: <AllCategoriesPage />
       },
       {

@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
-import { getCategory } from '../services/categorys/categoryService'
+import { getCategory } from '../services/categories/categoryService'
 import type { ApiResponse } from '../services/apiResponse'
-import type { CategoryResponse } from '../services/categorys/categoryResponse'
+import type { CategoryResponse } from '../services/categories/categoryResponse'
 import type { AxiosError, AxiosResponse } from 'axios'
 
 export const useCategoriesAll = (): {

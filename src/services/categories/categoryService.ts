@@ -1,5 +1,5 @@
 import axios from 'axios'
-import type { ApiResponse } from './../apiResponse'
+import type { ApiResponse } from '../apiResponse'
 import type { CategoryResponse } from './categoryResponse'
 import type { AxiosError, AxiosResponse } from 'axios'
 
