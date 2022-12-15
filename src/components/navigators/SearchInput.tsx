@@ -2,11 +2,7 @@ import SearchIcon from '@mui/icons-material/Search'
 import InputBase from '@mui/material/InputBase'
 import { styled, alpha } from '@mui/material/styles'
 import { useState } from 'react'
-import {
-  useSearchParams,
-  useNavigate,
-  createSearchParams
-} from 'react-router-dom'
+import { useNavigate, createSearchParams } from 'react-router-dom'
 import type { KeyboardEvent } from 'react'
 
 const Search = styled('div')(({ theme }) => ({
