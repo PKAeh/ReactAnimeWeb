@@ -3,6 +3,7 @@ import AllCategoriesPage from '../pages/AllCategoriesPage'
 import DetailAnimePage from '../pages/DetailAnimePage'
 import HomePage from '../pages/HomePage'
 import Root from '../pages/Root'
+import SearchPage from '../pages/SearchPage'
 import ShowAllAnimePage from '../pages/ShowAllAnimePage'
 import YearAnimePage from '../pages/YearAnimePage'
 
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
       {
         path: '/category/:slug',
         element: <AllCategoriesPage />
+      },
+      {
+        path: '/search',
+        element: <SearchPage />
       }
     ]
   }
