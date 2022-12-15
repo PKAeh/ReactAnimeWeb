@@ -36,3 +36,12 @@ export const getAllCategoryAnime = async (
   await axios.get<AxiosError, AxiosResponse<ApiResponse<AnimeResponse>>>(
     `https://kitsu.io/api/edge/anime?sort=-user_count&filter[categories]=${category}&page[limit]=${limit}&page[offset]=${offset}`
   )
+
+export const getSearchAnime = async (
+  offset: number,
+  limit: number,
+  search: string
+): Promise<AxiosResponse<ApiResponse<AnimeResponse>>> =>
+  await axios.get<AxiosError, AxiosResponse<ApiResponse<AnimeResponse>>>(
+    `https://kitsu.io/api/edge/anime?filter[text]=${search}&page[limit]=${limit}&page[offset]=${offset}`
+  )
