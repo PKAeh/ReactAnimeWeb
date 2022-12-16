@@ -1,15 +1,15 @@
 import Grid from '@mui/material/Unstable_Grid2'
-import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { BaseLoader } from '../components/BaseLoader'
 import BasePagination from '../components/BasePagination'
 import AnimeList from '../components/anime/AnimeList'
 import SearchAnimeNotEmpty from '../components/searchAnime/SearchAnimeNotEmpty'
 import SearchAnimeTitle from '../components/searchAnime/SearchAnimeTitle'
+import { usePage } from '../hooks/usePage'
 import { useSearchAnime } from '../hooks/useSearchAnime'
 
 const SearchPage = (): JSX.Element => {
-  const [page, setPage] = useState<number>(1)
+  const { page, setPage } = usePage()
   const [searchParams] = useSearchParams()
   const search = searchParams.get('search') ?? ''
   const { searchAnimeLoading, searchAnime, searchAnimeError } = useSearchAnime(

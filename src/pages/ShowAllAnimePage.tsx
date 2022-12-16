@@ -1,13 +1,13 @@
 import Grid from '@mui/material/Unstable_Grid2'
-import { useState } from 'react'
 import { BaseLoader } from '../components/BaseLoader'
 import BasePagination from '../components/BasePagination'
 import AnimeList from '../components/anime/AnimeList'
 import ShowAllAnimeTitle from '../components/showAllAnime/ShowAllAnimeTitle'
+import { usePage } from '../hooks/usePage'
 import { useShowAllAnime } from '../hooks/useShowAllAnime'
 
 const ShowAllAnimePage = (): JSX.Element => {
-  const [page, setPage] = useState<number>(1)
+  const { page, setPage } = usePage()
   const { showAllAnimeLoading, showAllAnime, showAllAnimeError } =
     useShowAllAnime(page)
   const count = Math.ceil((showAllAnime?.meta.count ?? 0) / 40)

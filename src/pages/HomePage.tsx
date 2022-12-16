@@ -5,9 +5,10 @@ import BasePagination from '../components/BasePagination'
 import AnimeList from '../components/anime/AnimeList'
 import HomePageTitle from '../components/homepage/HomePageTitle'
 import { useLastAnime } from '../hooks/useLastAnime'
+import { usePage } from '../hooks/usePage'
 
 const HomePage = (): JSX.Element => {
-  const [page, setPage] = useState<number>(1)
+  const { page, setPage } = usePage()
   const [total, setTotal] = useState<number>(0)
   const { lastAnimeLoading, lastAnime, lastAnimeError } = useLastAnime(
     page,

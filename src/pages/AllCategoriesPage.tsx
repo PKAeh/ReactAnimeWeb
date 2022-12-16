@@ -1,17 +1,17 @@
 import Grid from '@mui/material/Unstable_Grid2'
-import { useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { BaseLoader } from '../components/BaseLoader'
 import BasePagination from '../components/BasePagination'
 import AnimeList from '../components/anime/AnimeList'
 import AllCategoryAnimeTitle from '../components/navigators/category/AllCategoryAnimeTitle'
 import { useAllCategoryAnime } from '../hooks/useAllCategoryAnime'
+import { usePage } from '../hooks/usePage'
 
 const AllCategoriesPage = (): JSX.Element => {
-  const [page, setPage] = useState<number>(1)
   const [searchParams] = useSearchParams()
   const slug = searchParams.get('slug')
   const title = searchParams.get('name')
+  const { page, setPage } = usePage()
 
   const { allCategoryAnimeLoading, allCategoryAnime, allCategoryAnimeError } =
     useAllCategoryAnime(page, slug ?? '')
@@ -27,7 +27,7 @@ const AllCategoriesPage = (): JSX.Element => {
   return (
     <Grid sx={{ padding: '10px', width: '100%' }}>
       <Grid sx={{ padding: '15px 8px' }}>
-        <AllCategoryAnimeTitle category={title ?? ''} />
+        <AllCategoryAnimeTitle category={title ?? ''} />s
       </Grid>
       <Grid sx={{ width: '100%' }}>
         {allCategoryAnime && <AnimeList data={allCategoryAnime.data} />}

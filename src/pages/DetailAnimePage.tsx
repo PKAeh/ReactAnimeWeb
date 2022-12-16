@@ -1,5 +1,4 @@
 import Grid from '@mui/material/Unstable_Grid2'
-import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { BaseLoader } from '../components/BaseLoader'
 import BasePagination from '../components/BasePagination'
@@ -9,9 +8,10 @@ import DetailAnimeHeader from '../components/detailAnime/detailAnimeHeader/Detai
 import DetailAnimeTitle from '../components/detailAnime/detailAnimeTitle/DetailAnimeTitle'
 import { useDetailAnime } from '../hooks/useDetailAnime'
 import { useDetailAnimeEpisodes } from '../hooks/useDetailAnimeEpisodes'
+import { usePage } from '../hooks/usePage'
 
 const DetailAnimePage = (): JSX.Element => {
-  const [page, setPage] = useState<number>(1)
+  const { page, setPage } = usePage()
   const { id } = useParams()
   const { detailAnimeLoading, detailAnime, detailAnimeError } = useDetailAnime(
     id ?? ''
