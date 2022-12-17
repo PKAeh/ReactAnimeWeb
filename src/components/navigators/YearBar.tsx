@@ -1,7 +1,8 @@
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown'
 import { Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import BaseLink from '../BaseLink'
 
 const YearBar = (): JSX.Element => {
   const { year: pageYear } = useParams()
@@ -71,7 +72,7 @@ const YearBar = (): JSX.Element => {
       >
         {years.map((year) => (
           <Grid key={year} xs={3}>
-            <Link to={`/year/${year}`} style={{ textDecoration: 'none' }}>
+            <BaseLink to={`/year/${year}`}>
               <Typography
                 sx={{
                   fontSize: '0.8em',
@@ -89,7 +90,7 @@ const YearBar = (): JSX.Element => {
               >
                 {year}
               </Typography>
-            </Link>
+            </BaseLink>
           </Grid>
         ))}
       </Grid>

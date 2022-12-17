@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material'
-import { Link } from 'react-router-dom'
+import BaseLink from '../../BaseLink'
 
 interface DetailAnimeTitleHeaderProps {
   name: string
@@ -10,17 +10,13 @@ const DetailAnimeTitleHeader = ({
   name,
   pathPage
 }: DetailAnimeTitleHeaderProps): JSX.Element => (
-  <Link
-    to={pathPage}
-    style={{
-      color: 'rgb(190,190, 190)',
-      textDecoration: 'none'
-    }}
-  >
-    <Typography sx={{ fontSize: '0.8em', fontWeight: 'bold' }}>
+  <BaseLink to={pathPage}>
+    <Typography
+      sx={{ fontSize: '0.8em', fontWeight: 'bold', color: 'rgb(190,190, 190)' }}
+    >
       {name}
     </Typography>
-  </Link>
+  </BaseLink>
 )
 
 export default DetailAnimeTitleHeader

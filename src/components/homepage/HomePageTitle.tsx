@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
-import { Link } from 'react-router-dom'
+import BaseLink from '../BaseLink'
 
 const HomePageTitle = (): JSX.Element => (
   <Grid
@@ -22,7 +22,7 @@ const HomePageTitle = (): JSX.Element => (
       </Typography>
     </Grid>
     <Grid>
-      <Link to={'/anime'} style={{ textDecoration: 'none' }}>
+      <BaseLink to={'/anime'}>
         <Typography
           sx={{
             backgroundColor: '#fd2226',
@@ -37,7 +37,7 @@ const HomePageTitle = (): JSX.Element => (
         >
           ดูอนิเมะทั้งหมด
         </Typography>
-      </Link>
+      </BaseLink>
     </Grid>
   </Grid>
 )
