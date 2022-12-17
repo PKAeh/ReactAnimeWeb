@@ -34,10 +34,6 @@ const CategoryItem = ({
         borderBottom: '1px solid rgba(160,160, 160, 0.2)'
       }}
     >
-      {/* <Link
-        to={`/category/${data.attributes.slug}`}
-        style={{ textDecoration: 'none' }}
-      > */}
       <Grid
         container
         onClick={onClick}
@@ -65,7 +61,6 @@ const CategoryItem = ({
           {data.attributes.title}
         </Typography>
       </Grid>
-      {/* </Link> */}
     </Grid>
   )
 }
