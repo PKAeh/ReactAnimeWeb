@@ -1,6 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import AllCategoriesPage from '../pages/AllCategoriesPage'
 import DetailAnimePage from '../pages/DetailAnimePage'
+import FavoritePage from '../pages/FavoritePage'
 import HomePage from '../pages/HomePage'
 import Root from '../pages/Root'
 import SearchPage from '../pages/SearchPage'
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
       {
         path: '/search',
         element: <SearchPage />
+      },
+      {
+        path: '/favorite/:favorite',
+        element: <FavoritePage />
       }
     ]
   }
