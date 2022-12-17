@@ -7,7 +7,7 @@ interface BaseLinkProps {
 }
 
 const BaseLink = ({ children, to }: BaseLinkProps): JSX.Element => (
-  <Link to={to} style={{ textDecoration: 'nome' }}>
+  <Link to={to} style={{ textDecoration: 'none' }}>
     {children}
   </Link>
 )
