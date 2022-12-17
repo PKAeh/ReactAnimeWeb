@@ -14,7 +14,13 @@ const Root = (): JSX.Element => (
         padding: '0 !important'
       }}
     >
-      <Grid container sx={{ backgroundColor: 'rgba(0,0,0,0.85)' }}>
+      <Grid
+        container
+        sx={{
+          backgroundColor: 'rgba(0,0,0,0.85)',
+          borderTop: '1px solid rgba(160,160, 160, 0.2)'
+        }}
+      >
         <Grid xs={8.8}>
           <Outlet />
         </Grid>
