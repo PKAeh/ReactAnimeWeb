@@ -8,24 +8,24 @@ import { router } from './routes/route'
 const queryClient = new QueryClient()
 
 const theme = createTheme({
-  palette: {
-    primary: {
-      main: 'rgb(0, 0, 0)'
-    },
-    secondary: {
-      main: '#edf2ff'
-    }
-  }
+	palette: {
+		primary: {
+			main: 'rgb(0, 0, 0)'
+		},
+		secondary: {
+			main: '#edf2ff'
+		}
+	}
 })
 
 function App(): JSX.Element {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme}>
-        <RouterProvider router={router} />
-      </ThemeProvider>
-    </QueryClientProvider>
-  )
+	return (
+		<QueryClientProvider client={queryClient}>
+			<ThemeProvider theme={theme}>
+				<RouterProvider router={router} />
+			</ThemeProvider>
+		</QueryClientProvider>
+	)
 }
 
 export default App

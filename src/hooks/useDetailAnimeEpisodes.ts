@@ -5,35 +5,35 @@ import type { DetailAnimeEpisodesResponse } from '../services/detailAnimeEpsiode
 import type { AxiosError, AxiosResponse } from 'axios'
 
 interface useLastAnimePram {
-  detailAnimeEpisodesLoading: boolean
-  detailAnimeEpisodes:
-    | AxiosResponse<ApiResponse<DetailAnimeEpisodesResponse>>
-    | undefined
-  detailAnimeEpisodesError: AxiosError<unknown, unknown> | null
+	detailAnimeEpisodesLoading: boolean
+	detailAnimeEpisodes:
+		| AxiosResponse<ApiResponse<DetailAnimeEpisodesResponse>>
+		| undefined
+	detailAnimeEpisodesError: AxiosError<unknown, unknown> | null
 }
 
 export const useDetailAnimeEpisodes = (
-  page: number,
-  id: string
+	page: number,
+	id: string
 ): useLastAnimePram => {
-  const limit = 20
-  const offset = (page - 1) * limit
+	const limit = 20
+	const offset = (page - 1) * limit
 
-  const {
-    isLoading: detailAnimeEpisodesLoading,
-    data: detailAnimeEpisodes,
-    error: detailAnimeEpisodesError
-  } = useQuery<
-    AxiosResponse<ApiResponse<DetailAnimeEpisodesResponse>>,
-    AxiosError<unknown, unknown> | null
-  >({
-    queryKey: [`animeEpisodes-${id}-${page}`],
-    queryFn: () => getDetailAnimeEpisodes(id, offset, limit)
-  })
+	const {
+		isLoading: detailAnimeEpisodesLoading,
+		data: detailAnimeEpisodes,
+		error: detailAnimeEpisodesError
+	} = useQuery<
+		AxiosResponse<ApiResponse<DetailAnimeEpisodesResponse>>,
+		AxiosError<unknown, unknown> | null
+	>({
+		queryKey: [`animeEpisodes-${id}-${page}`],
+		queryFn: () => getDetailAnimeEpisodes(id, offset, limit)
+	})
 
-  return {
-    detailAnimeEpisodesLoading,
-    detailAnimeEpisodes,
-    detailAnimeEpisodesError
-  }
+	return {
+		detailAnimeEpisodesLoading,
+		detailAnimeEpisodes,
+		detailAnimeEpisodesError
+	}
 }

@@ -31,12 +31,19 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'import'],
   rules: {
-    semi: ['error', 'never'],
+    'indent': ["error", "tab"],
+    'semi': ['error', 'never'],
     'react/react-in-jsx-scope': 0,
     'react/jsx-uses-react': 0,
     'react/prop-types': 0,
     "@typescript-eslint/explicit-function-return-type": "error",
     "arrow-body-style": ["error", "as-needed"],
+    "prettier/prettier": [  //or whatever plugin that is causing the clash
+      "error",
+      {
+        "tabWidth": 4
+      }
+    ],
     "@typescript-eslint/consistent-type-imports": [
       "error",
       {

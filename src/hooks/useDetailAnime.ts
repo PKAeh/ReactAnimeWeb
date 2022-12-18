@@ -5,24 +5,24 @@ import type { DetailAnimeResponse } from './../services/detailAnime/detailAnimeR
 import type { AxiosError, AxiosResponse } from 'axios'
 
 export const useDetailAnime = (
-  id: string
+	id: string
 ): {
-  detailAnimeLoading: boolean
-  detailAnime: AxiosResponse<ApiResponse<DetailAnimeResponse>> | undefined
-  detailAnimeError: AxiosError<unknown, unknown> | null
+	detailAnimeLoading: boolean
+	detailAnime: AxiosResponse<ApiResponse<DetailAnimeResponse>> | undefined
+	detailAnimeError: AxiosError<unknown, unknown> | null
 } => {
-  const {
-    isLoading: detailAnimeLoading,
-    data: detailAnime,
-    error: detailAnimeError
-  } = useQuery<
-    AxiosResponse<ApiResponse<DetailAnimeResponse>>,
-    AxiosError<unknown, unknown> | null
-  >([`detailAnime-${id}`], () => getDetailAnime(id))
+	const {
+		isLoading: detailAnimeLoading,
+		data: detailAnime,
+		error: detailAnimeError
+	} = useQuery<
+		AxiosResponse<ApiResponse<DetailAnimeResponse>>,
+		AxiosError<unknown, unknown> | null
+	>([`detailAnime-${id}`], () => getDetailAnime(id))
 
-  return {
-    detailAnimeLoading,
-    detailAnime,
-    detailAnimeError
-  }
+	return {
+		detailAnimeLoading,
+		detailAnime,
+		detailAnimeError
+	}
 }

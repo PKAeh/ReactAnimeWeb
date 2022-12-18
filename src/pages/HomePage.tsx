@@ -8,37 +8,40 @@ import { useLastAnime } from '../hooks/useLastAnime'
 import { usePage } from '../hooks/usePage'
 
 const HomePage = (): JSX.Element => {
-  const { page, setPage } = usePage()
-  const [total, setTotal] = useState<number>(0)
-  const { lastAnimeLoading, lastAnime, lastAnimeError } = useLastAnime(
-    page,
-    total
-  )
-  const count = Math.ceil(Math.min(lastAnime?.meta.count ?? 0, 10000) / 40)
+	const { page, setPage } = usePage()
+	const [total, setTotal] = useState<number>(0)
+	const { lastAnimeLoading, lastAnime, lastAnimeError } = useLastAnime(
+		page,
+		total
+	)
+	const count = Math.ceil(Math.min(lastAnime?.meta.count ?? 0, 10000) / 40)
 
-  const onChange = (event: React.ChangeEvent<unknown>, page: number): void => {
-    setPage(page)
-  }
+	const onChange = (
+		event: React.ChangeEvent<unknown>,
+		page: number
+	): void => {
+		setPage(page)
+	}
 
-  useEffect(() => {
-    setTotal(lastAnime?.meta.count ?? 0)
-  }, [lastAnime])
+	useEffect(() => {
+		setTotal(lastAnime?.meta.count ?? 0)
+	}, [lastAnime])
 
-  if (lastAnimeLoading) {
-    return <BaseLoader style={{ marginTop: '100px' }} />
-  }
-  return (
-    <Grid sx={{ padding: '10px', width: '100%' }}>
-      <Grid sx={{ padding: '15px 8px' }}>
-        <HomePageTitle />
-      </Grid>
-      <Grid sx={{ width: '100%' }}>
-        {lastAnime && <AnimeList data={lastAnime.data} />}
-      </Grid>
-      <Grid sx={{ padding: '15px 0' }}>
-        <BasePagination page={page} count={count} onChange={onChange} />
-      </Grid>
-    </Grid>
-  )
+	if (lastAnimeLoading) {
+		return <BaseLoader style={{ marginTop: '100px' }} />
+	}
+	return (
+		<Grid sx={{ padding: '10px', width: '100%' }}>
+			<Grid sx={{ padding: '15px 8px' }}>
+				<HomePageTitle />
+			</Grid>
+			<Grid sx={{ width: '100%' }}>
+				{lastAnime && <AnimeList data={lastAnime.data} />}
+			</Grid>
+			<Grid sx={{ padding: '15px 0' }}>
+				<BasePagination page={page} count={count} onChange={onChange} />
+			</Grid>
+		</Grid>
+	)
 }
 export default HomePage

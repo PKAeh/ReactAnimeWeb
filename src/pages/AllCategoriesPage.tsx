@@ -8,35 +8,38 @@ import { useAllCategoryAnime } from '../hooks/useAllCategoryAnime'
 import { usePage } from '../hooks/usePage'
 
 const AllCategoriesPage = (): JSX.Element => {
-  const [searchParams] = useSearchParams()
-  const slug = searchParams.get('slug')
-  const title = searchParams.get('name')
-  const { page, setPage } = usePage()
+	const [searchParams] = useSearchParams()
+	const slug = searchParams.get('slug')
+	const title = searchParams.get('name')
+	const { page, setPage } = usePage()
 
-  const { allCategoryAnimeLoading, allCategoryAnime, allCategoryAnimeError } =
-    useAllCategoryAnime(page, slug ?? '')
-  const count = Math.ceil((allCategoryAnime?.meta.count ?? 0) / 40)
+	const { allCategoryAnimeLoading, allCategoryAnime, allCategoryAnimeError } =
+		useAllCategoryAnime(page, slug ?? '')
+	const count = Math.ceil((allCategoryAnime?.meta.count ?? 0) / 40)
 
-  const onChange = (event: React.ChangeEvent<unknown>, page: number): void => {
-    setPage(page)
-  }
+	const onChange = (
+		event: React.ChangeEvent<unknown>,
+		page: number
+	): void => {
+		setPage(page)
+	}
 
-  if (allCategoryAnimeLoading) {
-    return <BaseLoader style={{ marginTop: '100px' }} />
-  }
-  return (
-    <Grid sx={{ padding: '10px', width: '100%' }}>
-      <Grid sx={{ padding: '15px 8px' }}>
-        <AllCategoryAnimeTitle category={title ?? ''} />s
-      </Grid>
-      <Grid sx={{ width: '100%' }}>
-        {allCategoryAnime && <AnimeList data={allCategoryAnime.data} />}
-      </Grid>
-      <Grid sx={{ padding: '15px 0' }}>
-        <BasePagination page={page} count={count} onChange={onChange} />
-      </Grid>
-    </Grid>
-  )
+	if (allCategoryAnimeLoading) {
+		return <BaseLoader style={{ marginTop: '100px' }} />
+	}
+	return (
+		<Grid sx={{ padding: '10px', width: '100%' }}>
+			<Grid sx={{ padding: '15px 8px' }}>
+				<AllCategoryAnimeTitle category={title ?? ''} />s
+			</Grid>
+			<Grid sx={{ width: '100%' }}>
+				{allCategoryAnime && <AnimeList data={allCategoryAnime.data} />}
+			</Grid>
+			<Grid sx={{ padding: '15px 0' }}>
+				<BasePagination page={page} count={count} onChange={onChange} />
+			</Grid>
+		</Grid>
+	)
 }
 
 export default AllCategoriesPage
