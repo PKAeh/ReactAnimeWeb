@@ -31,13 +31,12 @@ module.exports = {
 	},
 	plugins: ['react', '@typescript-eslint', 'import'],
 	rules: {
-		'indent': ["error", "tab"],
 		'semi': ['error', 'never'],
 		'react/react-in-jsx-scope': 0,
 		'react/jsx-uses-react': 0,
 		'react/prop-types': 0,
 		"@typescript-eslint/explicit-function-return-type": "error",
-		"arrow-body-style": ["error", "as-needed"],
+		// "arrow-body-style": ["error", "as-needed"],
 		"@typescript-eslint/consistent-type-imports": [
 			"error",
 			{

@@ -1,7 +1,14 @@
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
-import MoreVertIcon from '@mui/icons-material/MoreVert'
-import { Tooltip, Typography } from '@mui/material'
+import {
+	ClickAwayListener,
+	MenuItem,
+	MenuList,
+	Paper,
+	Popper,
+	Tooltip,
+	Typography
+} from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -9,14 +16,20 @@ import type { AnimeResponse } from '../../services/anime/animeResponse'
 
 interface FavoriteAnimeItemProps {
 	data: AnimeResponse
+	listNameAnimeFavorite: string[]
 }
 
-const FavoriteAnimeItem = ({ data }: FavoriteAnimeItemProps): JSX.Element => {
+const FavoriteAnimeItem = ({
+	data,
+	listNameAnimeFavorite
+}: FavoriteAnimeItemProps): JSX.Element => {
 	const [hoverPlayAnimeItem, setHoverPlayAnimeItem] = useState<boolean>(false)
 	const [favoriteText, setFavoriteText] =
 		useState<string>('เพิ่มรายการที่ชอบ')
 	const [favoriteStatus, setFavoriteStatus] = useState<boolean>(false)
 	const [bgFavorite, setBgFavorite] = useState<string>('rgb(0,0,0)')
+	const [openMenu, setOpenMenu] = useState<boolean>(false)
+	const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
 	const navigate = useNavigate()
 
 	const onMouseEnter = (): void => {
@@ -43,17 +56,26 @@ const FavoriteAnimeItem = ({ data }: FavoriteAnimeItemProps): JSX.Element => {
 	}
 
 	const clickToPage = (): void => {
-		window.scrollTo(0, 0)
-		navigate(`/anime/${data.id}`)
+		if (!openMenu) {
+			window.scrollTo(0, 0)
+			navigate(`/anime/${data.id}`)
 
-		console.log('หน้าอนิเมะ')
+			console.log('หน้าอนิเมะ')
+		}
 	}
 
 	const clickToMoveFavorite = (
 		event: React.MouseEvent<HTMLButtonElement>
 	): void => {
 		event.stopPropagation()
+		setOpenMenu((state) => !state)
+		setAnchorEl(event.currentTarget)
 		console.log('ชอบ')
+	}
+
+	const handleClose = (event: Event | React.SyntheticEvent): void => {
+		event.stopPropagation()
+		setOpenMenu((state) => !state)
 	}
 
 	return (
@@ -89,12 +111,15 @@ const FavoriteAnimeItem = ({ data }: FavoriteAnimeItemProps): JSX.Element => {
 					position: 'absolute',
 					left: '8px',
 					top: '5px',
-					zIndex: '2'
+					zIndex: openMenu ? '5' : '3'
 				}}
 			>
 				<Tooltip title="ย้ายรายการ" placement="right" followCursor>
 					<Typography onClick={clickToMoveFavorite}>
 						<ArticleOutlinedIcon
+							aria-owns={
+								openMenu ? 'mouse-over-popover' : undefined
+							}
 							sx={{
 								bgcolor: 'rgba(0,0,0,0.8)',
 								color: 'white',
@@ -104,6 +129,50 @@ const FavoriteAnimeItem = ({ data }: FavoriteAnimeItemProps): JSX.Element => {
 						/>
 					</Typography>
 				</Tooltip>
+				<Popper
+					id="mouse-over-popover"
+					anchorEl={anchorEl}
+					open={openMenu}
+					placement="right"
+					disablePortal
+				>
+					{({ TransitionProps }): JSX.Element => (
+						// <Fade {...TransitionProps} timeout={350}>
+						<Paper
+							sx={{
+								bgcolor: 'rgba(80,80,80,0.8)',
+								color: 'white'
+							}}
+						>
+							<ClickAwayListener onClickAway={handleClose}>
+								<MenuList
+									aria-labelledby="composition-button"
+									sx={{
+										overflowY: 'scroll',
+										height: '170px'
+									}}
+								>
+									{listNameAnimeFavorite.map(
+										(item, index) => (
+											<MenuItem
+												key={index}
+												onClick={handleClose}
+												sx={{
+													'&:hover': {
+														color: '#fd5529'
+													}
+												}}
+											>
+												{item}
+											</MenuItem>
+										)
+									)}
+								</MenuList>
+							</ClickAwayListener>
+						</Paper>
+						// </Fade>
+					)}
+				</Popper>
 			</Grid>
 			<Grid
 				sx={{

@@ -1,11 +1,11 @@
-import AddIcon from '@mui/icons-material/Add'
-import { createTheme, IconButton, ThemeProvider } from '@mui/material'
+import { createTheme, ThemeProvider } from '@mui/material'
 import Tab from '@mui/material/Tab'
 import Tabs, { tabsClasses } from '@mui/material/Tabs'
 import Grid from '@mui/material/Unstable_Grid2'
 import { useState } from 'react'
 import { BaseLoader } from '../components/BaseLoader'
 import BasePagination from '../components/BasePagination'
+import AddItemFavorite from '../components/favoriteAnime/AddItemFavorite'
 import FavoriteAnimeList from '../components/favoriteAnime/FavoriteAnimeList'
 import { usePage } from '../hooks/usePage'
 import { useShowAllAnime } from '../hooks/useShowAllAnime'
@@ -63,6 +63,17 @@ function TabPanel(props: TabPanelProps): JSX.Element {
 	)
 }
 
+const listNameAnimeFavorite: string[] = [
+	'อนิเมะชื่นชอบ',
+	'Sword Act Online',
+	'Boku Academe',
+	'JoJo',
+	'Anime Movie',
+	'Fantasy',
+	'Love comandy',
+	'Action'
+]
+
 const FavoritePage = (): JSX.Element => {
 	const [value, setValue] = useState<number>(0)
 
@@ -119,34 +130,27 @@ const FavoritePage = (): JSX.Element => {
 								}
 							}}
 						>
-							<Tab label="อนิเมะชื่นชอบ" />
-							<Tab label="Sword Act Online" />
-							<Tab label="Boku Acadime" />
-							<Tab label="JoJo" />
-							<Tab label="Anime Movie" />
-							<Tab label="Fantasy" />
-							<Tab label="Love comandy" />
-							<Tab label="Action" />
+							{listNameAnimeFavorite.map(
+								(resp, index): JSX.Element => (
+									<Tab key={index} label={resp} />
+								)
+							)}
 						</Tabs>
 					</Grid>
 					<Grid>
-						<IconButton
-							aria-label="delete"
-							sx={{
-								color: 'white',
-								padding: '10px',
-								marginRight: '10px'
-							}}
-						>
-							<AddIcon sx={{ fontSize: '22px' }} />
-						</IconButton>
+						<AddItemFavorite />
 					</Grid>
 				</Grid>
 				<TabPanel value={value} index={0}>
 					<Grid sx={{ padding: '0 10px', width: '100%' }}>
 						<Grid>
 							{showAllAnime && (
-								<FavoriteAnimeList data={showAllAnime.data} />
+								<FavoriteAnimeList
+									data={showAllAnime.data}
+									listNameAnimeFavorite={
+										listNameAnimeFavorite
+									}
+								/>
 							)}
 						</Grid>
 						<Grid sx={{ padding: '15px 0' }}>
