@@ -24,6 +24,7 @@ const AddItemFavorite = (): JSX.Element => {
 
 	const handleClose = (): void => {
 		setOpen(false)
+		setNameList('')
 	}
 
 	const onKeyDown = ({
