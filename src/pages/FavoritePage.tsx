@@ -1,14 +1,14 @@
 import AddIcon from '@mui/icons-material/Add'
-import {
-	createTheme,
-	IconButton,
-	ThemeProvider,
-	Typography
-} from '@mui/material'
+import { createTheme, IconButton, ThemeProvider } from '@mui/material'
 import Tab from '@mui/material/Tab'
 import Tabs, { tabsClasses } from '@mui/material/Tabs'
 import Grid from '@mui/material/Unstable_Grid2'
 import { useState } from 'react'
+import { BaseLoader } from '../components/BaseLoader'
+import BasePagination from '../components/BasePagination'
+import FavoriteAnimeList from '../components/favoriteAnime/FavoriteAnimeList'
+import { usePage } from '../hooks/usePage'
+import { useShowAllAnime } from '../hooks/useShowAllAnime'
 
 const theme = createTheme({
 	palette: {
@@ -58,23 +58,35 @@ function TabPanel(props: TabPanelProps): JSX.Element {
 			aria-labelledby={`simple-tab-${index}`}
 			{...other}
 		>
-			{value === index && (
-				<Grid sx={{ p: 3 }}>
-					<Typography>{children}</Typography>
-				</Grid>
-			)}
+			{value === index && <Grid sx={{ paddingTop: 2 }}>{children}</Grid>}
 		</div>
 	)
 }
 
 const FavoritePage = (): JSX.Element => {
-	const [value, setValue] = useState(0)
+	const [value, setValue] = useState<number>(0)
+
+	const { page, setPage } = usePage()
+	const { showAllAnimeLoading, showAllAnime, showAllAnimeError } =
+		useShowAllAnime(page)
+	const count = Math.ceil((showAllAnime?.meta.count ?? 0) / 40)
+
+	const onChange = (
+		event: React.ChangeEvent<unknown>,
+		page: number
+	): void => {
+		setPage(page)
+	}
 
 	const handleChange = (
 		event: React.SyntheticEvent,
 		newValue: number
 	): void => {
 		setValue(newValue)
+	}
+
+	if (showAllAnimeLoading) {
+		return <BaseLoader style={{ marginTop: '100px' }} />
 	}
 
 	return (
@@ -131,7 +143,20 @@ const FavoritePage = (): JSX.Element => {
 					</Grid>
 				</Grid>
 				<TabPanel value={value} index={0}>
-					อนิเมะชื่นชอบ
+					<Grid sx={{ padding: '0 10px', width: '100%' }}>
+						<Grid>
+							{showAllAnime && (
+								<FavoriteAnimeList data={showAllAnime.data} />
+							)}
+						</Grid>
+						<Grid sx={{ padding: '15px 0' }}>
+							<BasePagination
+								page={page}
+								count={count}
+								onChange={onChange}
+							/>
+						</Grid>
+					</Grid>
 				</TabPanel>
 				<TabPanel value={value} index={1}>
 					Sword Act Online
