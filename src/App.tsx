@@ -22,13 +22,13 @@ const theme = createTheme({
 
 function App(): JSX.Element {
 	return (
-		<QueryClientProvider client={queryClient}>
-			<ThemeProvider theme={theme}>
-				<Provider store={store}>
+		<Provider store={store}>
+			<QueryClientProvider client={queryClient}>
+				<ThemeProvider theme={theme}>
 					<RouterProvider router={router} />
-				</Provider>
-			</ThemeProvider>
-		</QueryClientProvider>
+				</ThemeProvider>
+			</QueryClientProvider>
+		</Provider>
 	)
 }
 

@@ -1,10 +1,10 @@
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import { Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux/es/exports'
 import { useNavigate } from 'react-router-dom'
-import { addToFavorite } from '../../store/slicer'
+import { addToFavorite, isFavorite } from '../../store/slicer'
 import type { AnimeResponse } from '../../services/anime/animeResponse'
 
 interface AnimeItemProps {
@@ -12,20 +12,13 @@ interface AnimeItemProps {
 }
 
 const AnimeItem = ({ data }: AnimeItemProps): JSX.Element => {
-	const [hoverPlayAnimeItem, setHoverPlayAnimeItem] = useState<boolean>(false)
-	const [favoriteText, setFavoriteText] =
-		useState<string>('เพิ่มรายการที่ชอบ')
-	const [favoriteStatus, setFavoriteStatus] = useState<boolean>(false)
-	const [bgfavorite, setBgFavorite] = useState<string>('rgb(0,0,0)')
-	const navigate = useNavigate()
-
-	const fav = useSelector((state) => {
-		return state
-	})
-
-	console.log({ fav })
-
+	const isFav = useSelector(isFavorite(data.id))
 	const dispatch = useDispatch()
+
+	const [hoverPlayAnimeItem, setHoverPlayAnimeItem] = useState<boolean>(false)
+	const favoriteText = isFav ? 'ชื่นชอบ' : 'เพิ่มรายการที่ชอบ'
+	const bgfavorite = isFav ? 'rgb(245,14,14)' : 'rgb(0,0,0)'
+	const navigate = useNavigate()
 
 	const onMouseEnter = (): void => {
 		setHoverPlayAnimeItem(true)
@@ -37,16 +30,9 @@ const AnimeItem = ({ data }: AnimeItemProps): JSX.Element => {
 
 	const clickLike = (event: React.MouseEvent<HTMLButtonElement>): void => {
 		event.stopPropagation()
-		dispatch(addToFavorite(data))
-		if (favoriteStatus) {
-			setFavoriteText('เพิ่มรายการที่ชอบ')
-			setFavoriteStatus(false)
-			setBgFavorite('rgb(0,0,0)')
-		}
-		if (!favoriteStatus) {
-			setFavoriteText('ชื่นชอบ')
-			setFavoriteStatus(true)
-			setBgFavorite('rgb(245,14,14)')
+
+		if (!isFav) {
+			dispatch(addToFavorite(data))
 		}
 		console.log('ความชอบ')
 	}
@@ -57,6 +43,7 @@ const AnimeItem = ({ data }: AnimeItemProps): JSX.Element => {
 
 		console.log('หน้าอนิเมะ')
 	}
+
 	return (
 		<Grid
 			sx={{
