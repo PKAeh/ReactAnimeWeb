@@ -2,7 +2,9 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import { Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 import { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux/es/exports'
 import { useNavigate } from 'react-router-dom'
+import { addToFavorite } from '../../store/slicer'
 import type { AnimeResponse } from '../../services/anime/animeResponse'
 
 interface AnimeItemProps {
@@ -17,6 +19,14 @@ const AnimeItem = ({ data }: AnimeItemProps): JSX.Element => {
 	const [bgfavorite, setBgFavorite] = useState<string>('rgb(0,0,0)')
 	const navigate = useNavigate()
 
+	const fav = useSelector((state) => {
+		return state
+	})
+
+	console.log({ fav })
+
+	const dispatch = useDispatch()
+
 	const onMouseEnter = (): void => {
 		setHoverPlayAnimeItem(true)
 	}
@@ -27,6 +37,7 @@ const AnimeItem = ({ data }: AnimeItemProps): JSX.Element => {
 
 	const clickLike = (event: React.MouseEvent<HTMLButtonElement>): void => {
 		event.stopPropagation()
+		dispatch(addToFavorite(data))
 		if (favoriteStatus) {
 			setFavoriteText('เพิ่มรายการที่ชอบ')
 			setFavoriteStatus(false)
