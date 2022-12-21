@@ -1,9 +1,9 @@
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import { Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux/es/exports'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
 import { addToFavorite, isFavorite } from '../../store/slicer'
 import type { AnimeResponse } from '../../services/anime/animeResponse'
 
@@ -12,8 +12,8 @@ interface AnimeItemProps {
 }
 
 const AnimeItem = ({ data }: AnimeItemProps): JSX.Element => {
-	const isFav = useSelector(isFavorite(data.id))
-	const dispatch = useDispatch()
+	const isFav = useAppSelector(isFavorite(data.id))
+	const dispatch = useAppDispatch()
 
 	const [hoverPlayAnimeItem, setHoverPlayAnimeItem] = useState<boolean>(false)
 	const favoriteText = isFav ? 'ชื่นชอบ' : 'เพิ่มรายการที่ชอบ'
