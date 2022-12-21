@@ -4,7 +4,11 @@ import Grid from '@mui/material/Unstable_Grid2'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
-import { addToFavorite, isFavoriteSelector } from '../../store/slicer'
+import {
+	addToFavorite,
+	isFavoriteSelector,
+	unFavorite
+} from '../../store/slicer'
 import type { AnimeResponse } from '../../services/anime/animeResponse'
 
 interface AnimeItemProps {
@@ -31,10 +35,13 @@ const AnimeItem = ({ data }: AnimeItemProps): JSX.Element => {
 	const clickLike = (event: React.MouseEvent<HTMLButtonElement>): void => {
 		event.stopPropagation()
 
-		if (!isFavorite) {
+		if (isFavorite) {
+			dispatch(unFavorite(data))
+			console.log('ไม่ชอบ')
+		} else {
 			dispatch(addToFavorite(data))
+			console.log('ชอบ')
 		}
-		console.log('ความชอบ')
 	}
 
 	const clickToPage = (): void => {

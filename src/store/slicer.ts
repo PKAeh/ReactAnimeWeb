@@ -20,15 +20,25 @@ export const favoriteSlice = createSlice({
 		addToFavorite: (state, action: PayloadAction<AnimeResponse>) => {
 			const first = state.data[0]
 			first.data.push(action.payload)
+		},
+		unFavorite: (state, action: PayloadAction<AnimeResponse>) => {
+			for (const list of state.data) {
+				const index = list.data.findIndex(
+					(item) => item.id === action.payload.id
+				)
+				if (index >= 0) {
+					list.data.splice(index, 1)
+					break
+				}
+			}
 		}
-		// unFavorite: () => {},
 		// moveToList: () => {},
 		// addNameMyFavorite: () => {},
 		// deleteNameMyFavorite: () => {}
 	}
 })
 
-export const { addToFavorite } = favoriteSlice.actions
+export const { addToFavorite, unFavorite } = favoriteSlice.actions
 
 export const isFavoriteSelector =
 	(id: string) =>
