@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
-import type { PayloadAction } from './../../node_modules/@reduxjs/toolkit/src/createAction'
 import type { AnimeResponse } from './../services/anime/animeResponse'
-import type { FavoriteListData, FavoriteStoreState } from './state'
+import type { FavoriteStoreState } from './state'
 import type { RootState } from './store'
+import type { PayloadAction } from '@reduxjs/toolkit'
 
 const initialState: FavoriteStoreState = {
 	data: [
