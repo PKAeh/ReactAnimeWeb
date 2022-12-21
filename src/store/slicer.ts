@@ -30,7 +30,7 @@ export const favoriteSlice = createSlice({
 
 export const { addToFavorite } = favoriteSlice.actions
 
-export const isFavorite =
+export const isFavoriteSelector =
 	(id: string) =>
 	(state: RootState): boolean => {
 		const array = state.favorite.data.map((item) => item.data).flat()

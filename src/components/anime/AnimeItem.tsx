@@ -4,7 +4,7 @@ import Grid from '@mui/material/Unstable_Grid2'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
-import { addToFavorite, isFavorite } from '../../store/slicer'
+import { addToFavorite, isFavoriteSelector } from '../../store/slicer'
 import type { AnimeResponse } from '../../services/anime/animeResponse'
 
 interface AnimeItemProps {
@@ -12,12 +12,12 @@ interface AnimeItemProps {
 }
 
 const AnimeItem = ({ data }: AnimeItemProps): JSX.Element => {
-	const isFav = useAppSelector(isFavorite(data.id))
+	const isFavorite = useAppSelector(isFavoriteSelector(data.id))
 	const dispatch = useAppDispatch()
 
 	const [hoverPlayAnimeItem, setHoverPlayAnimeItem] = useState<boolean>(false)
-	const favoriteText = isFav ? 'ชื่นชอบ' : 'เพิ่มรายการที่ชอบ'
-	const bgfavorite = isFav ? 'rgb(245,14,14)' : 'rgb(0,0,0)'
+	const favoriteText = isFavorite ? 'ชื่นชอบ' : 'เพิ่มรายการที่ชอบ'
+	const bgFavorite = isFavorite ? 'rgb(245,14,14)' : 'rgb(0,0,0)'
 	const navigate = useNavigate()
 
 	const onMouseEnter = (): void => {
@@ -31,7 +31,7 @@ const AnimeItem = ({ data }: AnimeItemProps): JSX.Element => {
 	const clickLike = (event: React.MouseEvent<HTMLButtonElement>): void => {
 		event.stopPropagation()
 
-		if (!isFav) {
+		if (!isFavorite) {
 			dispatch(addToFavorite(data))
 		}
 		console.log('ความชอบ')
@@ -82,7 +82,7 @@ const AnimeItem = ({ data }: AnimeItemProps): JSX.Element => {
 			>
 				<Typography
 					sx={{
-						bgcolor: bgfavorite,
+						bgcolor: bgFavorite,
 						color: 'white',
 						fontSize: '0.7em',
 						padding: '1px 3px',
