@@ -8,6 +8,7 @@ import {
 	IconButton,
 	TextField
 } from '@mui/material'
+
 import Grid from '@mui/material/Unstable_Grid2'
 import { useState } from 'react'
 import { useAppDispatch } from '../../hooks/reduxHooks'
@@ -18,11 +19,11 @@ const AddItemFavorite = (): JSX.Element => {
 	const [nameList, setNameList] = useState<string>('')
 	const dispatch = useAppDispatch()
 
-	const handleClickOpen = (): void => {
+	const handleClickOpenAddName = (): void => {
 		setOpen(true)
 	}
 
-	const handleClose = (): void => {
+	const handleCloseAddName = (): void => {
 		setOpen(false)
 		setNameList('')
 	}
@@ -57,11 +58,11 @@ const AddItemFavorite = (): JSX.Element => {
 					padding: '10px',
 					marginRight: '10px'
 				}}
-				onClick={handleClickOpen}
+				onClick={handleClickOpenAddName}
 			>
 				<AddIcon sx={{ fontSize: '22px' }} />
 			</IconButton>
-			<Dialog open={open} onClose={handleClose}>
+			<Dialog open={open} onClose={handleCloseAddName}>
 				<DialogContent
 					sx={{
 						padding: '10px 10px 0 10px'
@@ -89,7 +90,7 @@ const AddItemFavorite = (): JSX.Element => {
 					}}
 				>
 					<Button
-						onClick={handleClose}
+						onClick={handleCloseAddName}
 						sx={{
 							'&:hover': {
 								color: '#fd5529'
