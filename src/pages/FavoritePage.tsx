@@ -78,11 +78,12 @@ const FavoritePage = (): JSX.Element => {
 		setPage(page)
 	}
 
-	const handleChange = (
+	const handleChangeTabs = (
 		event: React.SyntheticEvent,
 		newValue: number
 	): void => {
 		setValue(newValue)
+		setPage(1)
 	}
 
 	return (
@@ -100,7 +101,7 @@ const FavoritePage = (): JSX.Element => {
 					<Grid xs>
 						<Tabs
 							value={value}
-							onChange={handleChange}
+							onChange={handleChangeTabs}
 							variant="scrollable"
 							scrollButtons
 							aria-label="scrollable auto tabs example"

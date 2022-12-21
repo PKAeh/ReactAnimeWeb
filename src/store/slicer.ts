@@ -35,14 +35,20 @@ export const favoriteSlice = createSlice({
 					break
 				}
 			}
+		},
+		addNameMyFavorite: (state, action: PayloadAction<string>) => {
+			state.data.push({
+				name: action.payload,
+				data: []
+			})
 		}
 		// moveToList: () => {},
-		// addNameMyFavorite: () => {},
 		// deleteNameMyFavorite: () => {}
 	}
 })
 
-export const { addToFavorite, unFavorite } = favoriteSlice.actions
+export const { addToFavorite, unFavorite, addNameMyFavorite } =
+	favoriteSlice.actions
 
 export const isFavoriteSelector =
 	(id: string) =>

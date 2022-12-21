@@ -10,13 +10,13 @@ import {
 } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 import { useState } from 'react'
-import type { KeyboardEventHandler } from 'react'
-
-const item: string[] = []
+import { useAppDispatch } from '../../hooks/reduxHooks'
+import { addNameMyFavorite } from '../../store/slicer'
 
 const AddItemFavorite = (): JSX.Element => {
 	const [open, setOpen] = useState(false)
 	const [nameList, setNameList] = useState<string>('')
+	const dispatch = useAppDispatch()
 
 	const handleClickOpen = (): void => {
 		setOpen(true)
@@ -33,7 +33,7 @@ const AddItemFavorite = (): JSX.Element => {
 	}: React.KeyboardEvent<HTMLElement>): void => {
 		const value = (target as HTMLInputElement).value.trim()
 		if (key === 'Enter' && value.length > 0) {
-			item.push(nameList)
+			dispatch(addNameMyFavorite(nameList))
 			setNameList('')
 		}
 	}
@@ -44,7 +44,7 @@ const AddItemFavorite = (): JSX.Element => {
 	}
 
 	const onClick = (): void => {
-		item.push(nameList)
+		dispatch(addNameMyFavorite(nameList))
 		setNameList('')
 	}
 
@@ -70,13 +70,6 @@ const AddItemFavorite = (): JSX.Element => {
 					<DialogContentText>
 						{`สามารถ "เพิ่มเติม" รายการความชื่นชอบของคุณ "ListNameFavorite"`}
 					</DialogContentText>
-					{item.map((item, index): JSX.Element => {
-						return (
-							<DialogContentText key={index}>
-								{item}
-							</DialogContentText>
-						)
-					})}
 					<TextField
 						value={nameList}
 						autoFocus
