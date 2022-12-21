@@ -3,12 +3,12 @@ import Tab from '@mui/material/Tab'
 import Tabs, { tabsClasses } from '@mui/material/Tabs'
 import Grid from '@mui/material/Unstable_Grid2'
 import { useState } from 'react'
-import { BaseLoader } from '../components/BaseLoader'
 import BasePagination from '../components/BasePagination'
 import AddItemFavorite from '../components/favoriteAnime/AddItemFavorite'
 import FavoriteAnimeList from '../components/favoriteAnime/FavoriteAnimeList'
+import { useAppSelector } from '../hooks/reduxHooks'
 import { usePage } from '../hooks/usePage'
-import { useShowAllAnime } from '../hooks/useShowAllAnime'
+import { getFavorite } from '../store/slicer'
 
 const theme = createTheme({
 	palette: {
@@ -63,24 +63,13 @@ function TabPanel(props: TabPanelProps): JSX.Element {
 	)
 }
 
-const listNameAnimeFavorite: string[] = [
-	'อนิเมะชื่นชอบ',
-	'Sword Act Online',
-	'Boku Academe',
-	'JoJo',
-	'Anime Movie',
-	'Fantasy',
-	'Love comandy',
-	'Action'
-]
-
 const FavoritePage = (): JSX.Element => {
+	const favoriteList = useAppSelector(getFavorite)
 	const [value, setValue] = useState<number>(0)
 
 	const { page, setPage } = usePage()
-	const { showAllAnimeLoading, showAllAnime, showAllAnimeError } =
-		useShowAllAnime(page)
-	const count = Math.ceil((showAllAnime?.meta.count ?? 0) / 40)
+
+	const listNameAnimeFavorite = favoriteList.map((item) => item.name)
 
 	const onChange = (
 		event: React.ChangeEvent<unknown>,
@@ -94,10 +83,6 @@ const FavoritePage = (): JSX.Element => {
 		newValue: number
 	): void => {
 		setValue(newValue)
-	}
-
-	if (showAllAnimeLoading) {
-		return <BaseLoader style={{ marginTop: '100px' }} />
 	}
 
 	return (
@@ -141,33 +126,37 @@ const FavoritePage = (): JSX.Element => {
 						<AddItemFavorite />
 					</Grid>
 				</Grid>
-				<TabPanel value={value} index={0}>
-					<Grid sx={{ padding: '0 10px', width: '100%' }}>
-						<Grid>
-							{showAllAnime && (
-								<FavoriteAnimeList
-									data={showAllAnime.data}
-									listNameAnimeFavorite={
-										listNameAnimeFavorite
-									}
-								/>
-							)}
-						</Grid>
-						<Grid sx={{ padding: '15px 0' }}>
-							<BasePagination
-								page={page}
-								count={count}
-								onChange={onChange}
-							/>
-						</Grid>
-					</Grid>
-				</TabPanel>
-				<TabPanel value={value} index={1}>
-					Sword Act Online
-				</TabPanel>
-				<TabPanel value={value} index={2}>
-					Boku acadime
-				</TabPanel>
+
+				{favoriteList.map((resp, index) => {
+					const limit = 40
+					const count = Math.ceil(resp.data.length / limit)
+					const startIndex = (page - 1) * limit
+					const endIndex = page * limit
+					const data = resp.data.slice(startIndex, endIndex)
+					return (
+						<TabPanel key={index} value={value} index={index}>
+							<Grid sx={{ padding: '0 10px', width: '100%' }}>
+								<Grid>
+									<FavoriteAnimeList
+										data={data}
+										listNameAnimeFavorite={
+											listNameAnimeFavorite
+										}
+									/>
+								</Grid>
+								{count > 1 && (
+									<Grid sx={{ padding: '15px 0' }}>
+										<BasePagination
+											page={page}
+											count={count}
+											onChange={onChange}
+										/>
+									</Grid>
+								)}
+							</Grid>
+						</TabPanel>
+					)
+				})}
 			</Grid>
 		</ThemeProvider>
 	)
