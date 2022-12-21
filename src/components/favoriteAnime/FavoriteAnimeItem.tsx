@@ -12,6 +12,8 @@ import {
 import Grid from '@mui/material/Unstable_Grid2'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useAppDispatch } from '../../hooks/reduxHooks'
+import { unFavorite } from '../../store/slicer'
 import type { AnimeResponse } from '../../services/anime/animeResponse'
 
 interface FavoriteAnimeItemProps {
@@ -23,11 +25,11 @@ const FavoriteAnimeItem = ({
 	data,
 	listNameAnimeFavorite
 }: FavoriteAnimeItemProps): JSX.Element => {
+	const dispatch = useAppDispatch()
 	const [hoverPlayAnimeItem, setHoverPlayAnimeItem] = useState<boolean>(false)
-	const [favoriteText, setFavoriteText] =
-		useState<string>('เพิ่มรายการที่ชอบ')
-	const [favoriteStatus, setFavoriteStatus] = useState<boolean>(false)
-	const [bgFavorite, setBgFavorite] = useState<string>('rgb(0,0,0)')
+
+	const favoriteText = 'ชื่นชอบ'
+	const bgFavorite = 'rgb(245,14,14)'
 	const [openMenu, setOpenMenu] = useState<boolean>(false)
 	const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
 	const navigate = useNavigate()
@@ -42,25 +44,13 @@ const FavoriteAnimeItem = ({
 
 	const clickLike = (event: React.MouseEvent<HTMLButtonElement>): void => {
 		event.stopPropagation()
-		if (favoriteStatus) {
-			setFavoriteText('เพิ่มรายการที่ชอบ')
-			setFavoriteStatus(false)
-			setBgFavorite('rgb(0,0,0)')
-		}
-		if (!favoriteStatus) {
-			setFavoriteText('ชื่นชอบ')
-			setFavoriteStatus(true)
-			setBgFavorite('rgb(245,14,14)')
-		}
-		console.log('ความชอบ')
+		dispatch(unFavorite(data))
 	}
 
 	const clickToPage = (): void => {
 		if (!openMenu) {
 			window.scrollTo(0, 0)
 			navigate(`/anime/${data.id}`)
-
-			console.log('หน้าอนิเมะ')
 		}
 	}
 
@@ -148,7 +138,7 @@ const FavoriteAnimeItem = ({
 								<MenuList
 									aria-labelledby="composition-button"
 									sx={{
-										overflowY: 'scroll',
+										overflowY: 'auto',
 										height: '170px'
 									}}
 								>
