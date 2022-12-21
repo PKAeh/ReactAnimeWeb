@@ -9,10 +9,6 @@ const initialState: FavoriteStoreState = {
 		{
 			name: 'อนิมะชื่นชอบ',
 			data: []
-		},
-		{
-			name: 'Sword Act Online',
-			data: []
 		}
 	]
 }
@@ -41,14 +37,20 @@ export const favoriteSlice = createSlice({
 				name: action.payload,
 				data: []
 			})
+		},
+		deleteNameMyFavorite: (state, action: PayloadAction<number>) => {
+			state.data.splice(action.payload, 1)
 		}
 		// moveToList: () => {},
-		// deleteNameMyFavorite: () => {}
 	}
 })
 
-export const { addToFavorite, unFavorite, addNameMyFavorite } =
-	favoriteSlice.actions
+export const {
+	addToFavorite,
+	unFavorite,
+	addNameMyFavorite,
+	deleteNameMyFavorite
+} = favoriteSlice.actions
 
 export const isFavoriteSelector =
 	(id: string) =>

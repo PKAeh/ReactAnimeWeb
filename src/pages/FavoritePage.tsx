@@ -1,14 +1,18 @@
+import DeleteIcon from '@mui/icons-material/Delete'
 import { createTheme, ThemeProvider } from '@mui/material'
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
 import Tab from '@mui/material/Tab'
 import Tabs, { tabsClasses } from '@mui/material/Tabs'
+import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Unstable_Grid2'
 import { useState } from 'react'
 import BasePagination from '../components/BasePagination'
 import AddItemFavorite from '../components/favoriteAnime/AddItemFavorite'
 import FavoriteAnimeList from '../components/favoriteAnime/FavoriteAnimeList'
-import { useAppSelector } from '../hooks/reduxHooks'
+import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks'
 import { usePage } from '../hooks/usePage'
-import { getFavorite } from '../store/slicer'
+import { deleteNameMyFavorite, getFavorite } from '../store/slicer'
 
 const theme = createTheme({
 	palette: {
@@ -65,7 +69,9 @@ function TabPanel(props: TabPanelProps): JSX.Element {
 
 const FavoritePage = (): JSX.Element => {
 	const favoriteList = useAppSelector(getFavorite)
+	const dispatch = useAppDispatch()
 	const [value, setValue] = useState<number>(0)
+	const [indexNameFavorite, setIndexNameFavorite] = useState<number>(1)
 
 	const { page, setPage } = usePage()
 
@@ -84,6 +90,37 @@ const FavoritePage = (): JSX.Element => {
 	): void => {
 		setValue(newValue)
 		setPage(1)
+	}
+
+	const [contextMenu, setContextMenu] = useState<{
+		mouseX: number
+		mouseY: number
+	} | null>(null)
+
+	const handleContextMenu = (
+		event: React.MouseEvent,
+		index: number
+	): void => {
+		console.log(index)
+
+		event.preventDefault()
+		setContextMenu(
+			contextMenu === null
+				? {
+						mouseX: event.clientX + 2,
+						mouseY: event.clientY - 6
+				  }
+				: null
+		)
+		setIndexNameFavorite(index)
+	}
+
+	const handleClose = (): void => {
+		setContextMenu(null)
+	}
+	const handleCloseRemoveName = (): void => {
+		dispatch(deleteNameMyFavorite(indexNameFavorite))
+		setContextMenu(null)
 	}
 
 	return (
@@ -118,10 +155,59 @@ const FavoritePage = (): JSX.Element => {
 						>
 							{listNameAnimeFavorite.map(
 								(resp, index): JSX.Element => (
-									<Tab key={index} label={resp} />
+									<Tab
+										key={index}
+										label={resp}
+										onContextMenu={(event): void => {
+											index > 0
+												? handleContextMenu(
+														event,
+														index
+												  )
+												: undefined
+										}}
+									/>
 								)
 							)}
 						</Tabs>
+						<Menu
+							open={contextMenu !== null}
+							onClose={handleClose}
+							anchorReference="anchorPosition"
+							anchorPosition={
+								contextMenu !== null
+									? {
+											top: contextMenu.mouseY,
+											left: contextMenu.mouseX
+									  }
+									: undefined
+							}
+						>
+							<MenuItem
+								onClick={handleCloseRemoveName}
+								sx={{ padding: '0 5px' }}
+							>
+								<Grid
+									container
+									sx={{
+										alignItems: 'center',
+										'&:hover': {
+											color: '#fd5529'
+										}
+									}}
+								>
+									<DeleteIcon sx={{ fontSize: '0.9em' }} />
+									<Typography
+										sx={{
+											fontSize: '0.9em',
+											padding: '0 0 0 2px'
+										}}
+									>
+										ลบรายการ
+									</Typography>
+								</Grid>
+							</MenuItem>
+						</Menu>
 					</Grid>
 					<Grid>
 						<AddItemFavorite />
@@ -137,6 +223,7 @@ const FavoritePage = (): JSX.Element => {
 					return (
 						<TabPanel key={index} value={value} index={index}>
 							<Grid sx={{ padding: '0 10px', width: '100%' }}>
+								<Typography>{resp.name}</Typography>
 								<Grid>
 									<FavoriteAnimeList
 										data={data}
