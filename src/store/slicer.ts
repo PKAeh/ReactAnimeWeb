@@ -10,13 +10,17 @@ const initialState: FavoriteStoreState = {
 			name: 'อนิมะชื่นชอบ',
 			data: []
 		}
-	]
+	],
+	tabsValue: 0
 }
 
 export const favoriteSlice = createSlice({
 	name: 'favorite',
 	initialState: initialState,
 	reducers: {
+		setTabsValue: (state, action: PayloadAction<number>) => {
+			state.tabsValue = action.payload
+		},
 		addToFavorite: (state, action: PayloadAction<AnimeResponse>) => {
 			const first = state.data[0]
 			first.data.push(action.payload)
@@ -49,7 +53,8 @@ export const {
 	addToFavorite,
 	unFavorite,
 	addNameMyFavorite,
-	deleteNameMyFavorite
+	deleteNameMyFavorite,
+	setTabsValue
 } = favoriteSlice.actions
 
 export const isFavoriteSelector =
@@ -61,6 +66,10 @@ export const isFavoriteSelector =
 
 export const getFavorite = (state: RootState): FavoriteListData[] => {
 	return state.favorite.data
+}
+
+export const getTabsValue = (state: RootState): number => {
+	return state.favorite.tabsValue
 }
 
 export const favoriteReducer = favoriteSlice.reducer

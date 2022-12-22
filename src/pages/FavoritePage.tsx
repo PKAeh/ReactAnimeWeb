@@ -20,7 +20,12 @@ import AddItemFavorite from '../components/favoriteAnime/AddItemFavorite'
 import FavoriteAnimeList from '../components/favoriteAnime/FavoriteAnimeList'
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks'
 import { usePage } from '../hooks/usePage'
-import { deleteNameMyFavorite, getFavorite } from '../store/slicer'
+import {
+	deleteNameMyFavorite,
+	getFavorite,
+	getTabsValue,
+	setTabsValue
+} from '../store/slicer'
 
 const theme = createTheme({
 	palette: {
@@ -78,7 +83,7 @@ function TabPanel(props: TabPanelProps): JSX.Element {
 const FavoritePage = (): JSX.Element => {
 	const favoriteList = useAppSelector(getFavorite)
 	const dispatch = useAppDispatch()
-	const [value, setValue] = useState<number>(0)
+	const value = useAppSelector(getTabsValue)
 	const [indexNameFavorite, setIndexNameFavorite] = useState<number>(0)
 	const [openNotEmpty, setOpenNotEmpty] = useState<boolean>(false)
 
@@ -97,7 +102,7 @@ const FavoritePage = (): JSX.Element => {
 		event: React.SyntheticEvent,
 		newValue: number
 	): void => {
-		setValue(newValue)
+		dispatch(setTabsValue(newValue))
 		setPage(1)
 	}
 
@@ -110,8 +115,6 @@ const FavoritePage = (): JSX.Element => {
 		event: React.MouseEvent,
 		index: number
 	): void => {
-		console.log(index)
-
 		event.preventDefault()
 		setContextMenu(
 			contextMenu === null
@@ -139,7 +142,7 @@ const FavoritePage = (): JSX.Element => {
 
 	const onClickDeleteList = (): void => {
 		dispatch(deleteNameMyFavorite(indexNameFavorite))
-		setValue(0)
+		dispatch(setTabsValue(0))
 		setOpenNotEmpty(false)
 	}
 

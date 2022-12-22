@@ -7,4 +7,5 @@ export interface FavoriteListData {
 
 export interface FavoriteStoreState {
 	data: FavoriteListData[]
+	tabsValue: number
 }

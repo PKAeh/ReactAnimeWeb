@@ -1,3 +1,4 @@
+import { log } from 'console'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import {
@@ -12,8 +13,8 @@ import {
 import Grid from '@mui/material/Unstable_Grid2'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useAppDispatch } from '../../hooks/reduxHooks'
-import { unFavorite } from '../../store/slicer'
+import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
+import { getTabsValue, unFavorite } from '../../store/slicer'
 import type { AnimeResponse } from '../../services/anime/animeResponse'
 
 interface FavoriteAnimeItemProps {
@@ -26,6 +27,8 @@ const FavoriteAnimeItem = ({
 	listNameAnimeFavorite
 }: FavoriteAnimeItemProps): JSX.Element => {
 	const dispatch = useAppDispatch()
+	const tabsValue = useAppSelector(getTabsValue)
+
 	const [hoverPlayAnimeItem, setHoverPlayAnimeItem] = useState<boolean>(false)
 
 	const favoriteText = 'ชื่นชอบ'
@@ -67,6 +70,9 @@ const FavoriteAnimeItem = ({
 		event.stopPropagation()
 		setOpenMenu((state) => !state)
 	}
+
+	const nameList = [...listNameAnimeFavorite]
+	nameList.splice(tabsValue, 1)
 
 	return (
 		<Grid
@@ -142,21 +148,19 @@ const FavoriteAnimeItem = ({
 										height: '145px'
 									}}
 								>
-									{listNameAnimeFavorite.map(
-										(item, index) => (
-											<MenuItem
-												key={index}
-												onClick={handleClose}
-												sx={{
-													'&:hover': {
-														color: '#fd5529'
-													}
-												}}
-											>
-												{item}
-											</MenuItem>
-										)
-									)}
+									{nameList.map((item, index) => (
+										<MenuItem
+											key={index}
+											onClick={handleClose}
+											sx={{
+												'&:hover': {
+													color: '#fd5529'
+												}
+											}}
+										>
+											{item}
+										</MenuItem>
+									))}
 								</MenuList>
 							</ClickAwayListener>
 						</Paper>
