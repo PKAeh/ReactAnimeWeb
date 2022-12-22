@@ -206,6 +206,7 @@ const FavoritePage = (): JSX.Element => {
 									  }
 									: undefined
 							}
+							disableScrollLock
 						>
 							<MenuItem
 								onClick={handleCloseRemoveName}
@@ -238,7 +239,11 @@ const FavoritePage = (): JSX.Element => {
 					</Grid>
 				</Grid>
 
-				<Dialog open={openNotEmpty} onClose={handleCloseMessageDelete}>
+				<Dialog
+					open={openNotEmpty}
+					onClose={handleCloseMessageDelete}
+					disableScrollLock
+				>
 					<DialogContent>
 						<DialogContentText>
 							{`มีอนิเมะในลิสรายการ "${listNameAnimeFavorite[indexNameFavorite]}" คุณต้องการลบหรือไม่ !`}

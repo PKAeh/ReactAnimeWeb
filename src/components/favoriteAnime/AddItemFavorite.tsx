@@ -62,7 +62,7 @@ const AddItemFavorite = (): JSX.Element => {
 			>
 				<AddIcon sx={{ fontSize: '22px' }} />
 			</IconButton>
-			<Dialog open={open} onClose={handleCloseAddName}>
+			<Dialog open={open} onClose={handleCloseAddName} disableScrollLock>
 				<DialogContent
 					sx={{
 						padding: '10px 10px 0 10px'
