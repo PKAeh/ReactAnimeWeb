@@ -14,6 +14,11 @@ const initialState: FavoriteStoreState = {
 	tabsValue: 0
 }
 
+type PayloadMoveItem = {
+	data: AnimeResponse
+	index: number
+}
+
 export const favoriteSlice = createSlice({
 	name: 'favorite',
 	initialState: initialState,
@@ -44,8 +49,19 @@ export const favoriteSlice = createSlice({
 		},
 		deleteNameMyFavorite: (state, action: PayloadAction<number>) => {
 			state.data.splice(action.payload, 1)
+		},
+		moveToList: (state, action: PayloadAction<PayloadMoveItem>) => {
+			for (const list of state.data) {
+				const index = list.data.findIndex(
+					(item) => item.id === action.payload.data.id
+				)
+				if (index >= 0) {
+					list.data.splice(index, 1)
+					break
+				}
+			}
+			state.data[action.payload.index].data.push(action.payload.data)
 		}
-		// moveToList: () => {},
 	}
 })
 
@@ -54,7 +70,8 @@ export const {
 	unFavorite,
 	addNameMyFavorite,
 	deleteNameMyFavorite,
-	setTabsValue
+	setTabsValue,
+	moveToList
 } = favoriteSlice.actions
 
 export const isFavoriteSelector =

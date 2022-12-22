@@ -14,7 +14,7 @@ import Grid from '@mui/material/Unstable_Grid2'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
-import { getTabsValue, unFavorite } from '../../store/slicer'
+import { getTabsValue, moveToList, unFavorite } from '../../store/slicer'
 import type { AnimeResponse } from '../../services/anime/animeResponse'
 
 interface FavoriteAnimeItemProps {
@@ -66,13 +66,20 @@ const FavoriteAnimeItem = ({
 		console.log('ชอบ')
 	}
 
-	const handleClose = (event: Event | React.SyntheticEvent): void => {
-		event.stopPropagation()
-		setOpenMenu((state) => !state)
-	}
-
-	const nameList = [...listNameAnimeFavorite]
-	nameList.splice(tabsValue, 1)
+	const handleClose =
+		(index?: number) =>
+		(event: Event | React.SyntheticEvent): void => {
+			event.stopPropagation()
+			setOpenMenu((state) => !state)
+			if (index) {
+				dispatch(
+					moveToList({
+						data: data,
+						index: index
+					})
+				)
+			}
+		}
 
 	return (
 		<Grid
@@ -140,7 +147,7 @@ const FavoriteAnimeItem = ({
 								color: 'white'
 							}}
 						>
-							<ClickAwayListener onClickAway={handleClose}>
+							<ClickAwayListener onClickAway={handleClose()}>
 								<MenuList
 									aria-labelledby="composition-button"
 									sx={{
@@ -148,19 +155,26 @@ const FavoriteAnimeItem = ({
 										height: '145px'
 									}}
 								>
-									{nameList.map((item, index) => (
-										<MenuItem
-											key={index}
-											onClick={handleClose}
-											sx={{
-												'&:hover': {
-													color: '#fd5529'
-												}
-											}}
-										>
-											{item}
-										</MenuItem>
-									))}
+									{listNameAnimeFavorite.map(
+										(item, index) => {
+											if (index === tabsValue) {
+												return <div key={index}></div>
+											}
+											return (
+												<MenuItem
+													key={index}
+													onClick={handleClose(index)}
+													sx={{
+														'&:hover': {
+															color: '#fd5529'
+														}
+													}}
+												>
+													{item}
+												</MenuItem>
+											)
+										}
+									)}
 								</MenuList>
 							</ClickAwayListener>
 						</Paper>
