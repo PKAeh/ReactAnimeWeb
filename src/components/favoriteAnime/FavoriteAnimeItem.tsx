@@ -139,7 +139,7 @@ const FavoriteAnimeItem = ({
 									aria-labelledby="composition-button"
 									sx={{
 										overflowY: 'auto',
-										height: '170px'
+										height: '145px'
 									}}
 								>
 									{listNameAnimeFavorite.map(
