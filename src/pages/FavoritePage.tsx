@@ -1,5 +1,13 @@
 import DeleteIcon from '@mui/icons-material/Delete'
-import { createTheme, ThemeProvider } from '@mui/material'
+import {
+	Button,
+	createTheme,
+	Dialog,
+	DialogActions,
+	DialogContent,
+	DialogContentText,
+	ThemeProvider
+} from '@mui/material'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import Tab from '@mui/material/Tab'
@@ -72,6 +80,7 @@ const FavoritePage = (): JSX.Element => {
 	const dispatch = useAppDispatch()
 	const [value, setValue] = useState<number>(0)
 	const [indexNameFavorite, setIndexNameFavorite] = useState<number>(0)
+	const [openNotEmpty, setOpenNotEmpty] = useState<boolean>(false)
 
 	const { page, setPage } = usePage()
 
@@ -119,9 +128,23 @@ const FavoritePage = (): JSX.Element => {
 		setContextMenu(null)
 	}
 	const handleCloseRemoveName = (): void => {
+		const isEmpty = favoriteList[indexNameFavorite].data.length === 0
+		setContextMenu(null)
+		if (isEmpty) {
+			onClickDeleteList()
+		} else {
+			setOpenNotEmpty(true)
+		}
+	}
+
+	const onClickDeleteList = (): void => {
 		dispatch(deleteNameMyFavorite(indexNameFavorite))
 		setValue(0)
-		setContextMenu(null)
+		setOpenNotEmpty(false)
+	}
+
+	const handleCloseMessageDelete = (): void => {
+		setOpenNotEmpty(false)
 	}
 
 	return (
@@ -215,6 +238,36 @@ const FavoritePage = (): JSX.Element => {
 					</Grid>
 				</Grid>
 
+				<Dialog open={openNotEmpty} onClose={handleCloseMessageDelete}>
+					<DialogContent>
+						<DialogContentText>
+							{`มีอนิเมะในลิสรายการ "${listNameAnimeFavorite[indexNameFavorite]}" คุณต้องการลบหรือไม่ !`}
+						</DialogContentText>
+					</DialogContent>
+					<DialogActions>
+						<Button
+							onClick={handleCloseMessageDelete}
+							sx={{
+								'&:hover': {
+									color: '#fd5529'
+								}
+							}}
+						>
+							Cancel
+						</Button>
+						<Button
+							onClick={onClickDeleteList}
+							sx={{
+								'&:hover': {
+									color: '#fd5529'
+								}
+							}}
+						>
+							OK
+						</Button>
+					</DialogActions>
+				</Dialog>
+
 				{favoriteList.map((resp, index) => {
 					const limit = 40
 					const count = Math.ceil(resp.data.length / limit)
@@ -224,7 +277,6 @@ const FavoritePage = (): JSX.Element => {
 					return (
 						<TabPanel key={index} value={value} index={index}>
 							<Grid sx={{ padding: '0 10px', width: '100%' }}>
-								<Typography>{resp.name}</Typography>
 								<Grid>
 									<FavoriteAnimeList
 										data={data}
