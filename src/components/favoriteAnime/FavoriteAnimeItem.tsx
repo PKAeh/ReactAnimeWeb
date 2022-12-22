@@ -71,7 +71,7 @@ const FavoriteAnimeItem = ({
 		(event: Event | React.SyntheticEvent): void => {
 			event.stopPropagation()
 			setOpenMenu((state) => !state)
-			if (index) {
+			if (index !== undefined) {
 				dispatch(
 					moveToList({
 						data: data,
