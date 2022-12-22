@@ -249,7 +249,7 @@ const FavoritePage = (): JSX.Element => {
 				>
 					<DialogContent>
 						<DialogContentText>
-							{`มีอนิเมะในลิสรายการ "${listNameAnimeFavorite[indexNameFavorite]}" คุณต้องการลบหรือไม่ !`}
+							<Typography>{`มีอนิเมะที่ชื่นชอบในรายการ "${listNameAnimeFavorite[indexNameFavorite]}" คุณต้องการลบหรือไม่ ?`}</Typography>
 						</DialogContentText>
 					</DialogContent>
 					<DialogActions>
@@ -261,7 +261,7 @@ const FavoritePage = (): JSX.Element => {
 								}
 							}}
 						>
-							Cancel
+							ยกเลิก
 						</Button>
 						<Button
 							onClick={onClickDeleteList}
@@ -271,7 +271,7 @@ const FavoritePage = (): JSX.Element => {
 								}
 							}}
 						>
-							OK
+							ตกลง
 						</Button>
 					</DialogActions>
 				</Dialog>

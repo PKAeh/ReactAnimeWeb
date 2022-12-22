@@ -63,13 +63,9 @@ const AddItemFavorite = (): JSX.Element => {
 				<AddIcon sx={{ fontSize: '22px' }} />
 			</IconButton>
 			<Dialog open={open} onClose={handleCloseAddName} disableScrollLock>
-				<DialogContent
-					sx={{
-						padding: '10px 10px 0 10px'
-					}}
-				>
+				<DialogContent sx={{ paddingBottom: '10px' }}>
 					<DialogContentText>
-						{`สามารถ "เพิ่มเติม" รายการความชื่นชอบของคุณ "ListNameFavorite"`}
+						{`สามารถ "เพิ่ม" รายการอนิเมะที่ชื่นชอบของคุณ เช่น "Sword Act Online"`}
 					</DialogContentText>
 					<TextField
 						value={nameList}
@@ -97,7 +93,7 @@ const AddItemFavorite = (): JSX.Element => {
 							}
 						}}
 					>
-						Cancel
+						ยกเลิก
 					</Button>
 					<Button
 						onClick={onClick}
@@ -107,7 +103,7 @@ const AddItemFavorite = (): JSX.Element => {
 							}
 						}}
 					>
-						OK
+						ตกลง
 					</Button>
 				</DialogActions>
 			</Dialog>
