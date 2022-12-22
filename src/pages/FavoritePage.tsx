@@ -71,7 +71,7 @@ const FavoritePage = (): JSX.Element => {
 	const favoriteList = useAppSelector(getFavorite)
 	const dispatch = useAppDispatch()
 	const [value, setValue] = useState<number>(0)
-	const [indexNameFavorite, setIndexNameFavorite] = useState<number>(1)
+	const [indexNameFavorite, setIndexNameFavorite] = useState<number>(0)
 
 	const { page, setPage } = usePage()
 
@@ -120,6 +120,7 @@ const FavoritePage = (): JSX.Element => {
 	}
 	const handleCloseRemoveName = (): void => {
 		dispatch(deleteNameMyFavorite(indexNameFavorite))
+		setValue(0)
 		setContextMenu(null)
 	}
 
