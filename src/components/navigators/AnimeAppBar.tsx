@@ -1,16 +1,49 @@
 import FavoriteIcon from '@mui/icons-material/Favorite'
+import { Fade } from '@mui/material'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
 import Container from '@mui/material/Container'
+import Grow from '@mui/material/Grow'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
+import Grid from '@mui/material/Unstable_Grid2'
+import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import { getFavoriteCount } from '../../store/slicer'
 import BaseLink from '../BaseLink'
 import SearchInput from './SearchInput'
 
+let triggerTimeout: NodeJS.Timeout
+let showCountTimeout: NodeJS.Timeout
 const AnimeAppBar = (): JSX.Element => {
 	const { favorite: animeFavorite } = useParams()
 	const favorite = 'อนิเมะชื่นชอบ'
+	const countFavorite = useSelector(getFavoriteCount)
+	const [trigger, setTrigger] = useState<boolean>(true)
+	const [showCount, setShowCount] = useState<boolean>(false)
+
+	useEffect(() => {
+		setTrigger(false)
+		setShowCount(false)
+
+		if (triggerTimeout) {
+			clearTimeout(triggerTimeout)
+		}
+		if (showCountTimeout) {
+			clearTimeout(showCountTimeout)
+		}
+		triggerTimeout = setTimeout(() => {
+			setTrigger(true)
+		}, 400)
+
+		showCountTimeout = setTimeout(() => {
+			if (countFavorite > 0) {
+				setShowCount(true)
+			}
+		}, 400)
+	}, [countFavorite])
+
 	return (
 		<AppBar position="sticky">
 			<Container maxWidth="lg" sx={{ padding: '0 0 0 20px !important' }}>
@@ -32,9 +65,8 @@ const AnimeAppBar = (): JSX.Element => {
 					</BaseLink>
 
 					<BaseLink to={`/favorite/${favorite}`}>
-						<Typography
-							variant="h6"
-							noWrap
+						<Grid
+							container
 							sx={{
 								mr: 2,
 								display: { xs: 'none', md: 'flex' },
@@ -50,14 +82,42 @@ const AnimeAppBar = (): JSX.Element => {
 								}
 							}}
 						>
-							อนิเมะที่ชื่นชอบ{' '}
-							<FavoriteIcon
-								sx={{
-									padding: '3px 0 0 1px',
-									fontSize: '1.1em'
-								}}
-							/>
-						</Typography>
+							<Grid>
+								<Typography
+									variant="h6"
+									noWrap
+									sx={{ fontSize: '1rem' }}
+								>
+									อนิเมะที่ชื่นชอบ
+								</Typography>
+							</Grid>
+							<Grid>
+								<Grow in={trigger} timeout={1000}>
+									<FavoriteIcon
+										sx={{
+											padding: '4px 0 0 1px',
+											fontSize: '1.1em'
+										}}
+									></FavoriteIcon>
+								</Grow>
+							</Grid>
+							<Grid>
+								<Fade in={showCount} timeout={300} appear>
+									<Typography
+										sx={{
+											padding: '3px 0 0 3px',
+											fontWeight: 'bold',
+											fontSize: '0.8em',
+											color: '#fd5529'
+										}}
+									>
+										{showCount &&
+											countFavorite > 0 &&
+											countFavorite}
+									</Typography>
+								</Fade>
+							</Grid>
+						</Grid>
 					</BaseLink>
 
 					<Box sx={{ flexGrow: 1 }}></Box>

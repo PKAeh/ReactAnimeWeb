@@ -89,4 +89,7 @@ export const getTabsValue = (state: RootState): number => {
 	return state.favorite.tabsValue
 }
 
+export const getFavoriteCount = (state: RootState): number => {
+	return state.favorite.data.map((item) => item.data).flat().length
+}
 export const favoriteReducer = favoriteSlice.reducer
