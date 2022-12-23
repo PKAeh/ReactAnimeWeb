@@ -20,7 +20,7 @@ const CategoryItem = ({
 
 	const onClick = (): void => {
 		navigate({
-			pathname: 'category',
+			pathname: '/category',
 			search: createSearchParams({ slug, name }).toString()
 		})
 		window.scroll(0, 0)
