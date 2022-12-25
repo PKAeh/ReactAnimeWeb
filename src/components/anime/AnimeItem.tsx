@@ -12,7 +12,7 @@ import {
 } from '../../store/slicer'
 import {
 	toastAddFavorite,
-	toastDeleteFavorite,
+	toastUnFavorite,
 	toastError
 } from '../../utils/toast'
 import type { AnimeResponse } from '../../services/anime/animeResponse'
@@ -43,7 +43,7 @@ const AnimeItem = ({ data }: AnimeItemProps): JSX.Element => {
 
 		if (isFavorite) {
 			dispatch(unFavorite(data))
-			toastDeleteFavorite(data.attributes.canonicalTitle)
+			toastUnFavorite(data.attributes.canonicalTitle)
 		} else {
 			dispatch(addToFavorite(data))
 			toastAddFavorite(data.attributes.canonicalTitle)

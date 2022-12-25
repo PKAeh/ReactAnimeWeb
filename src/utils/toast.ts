@@ -13,7 +13,7 @@ export const toastAddFavorite = (title: string): void => {
 	})
 }
 
-export const toastDeleteFavorite = (title: string): void => {
+export const toastUnFavorite = (title: string): void => {
 	toast.error(`ลบ "${title}" เรียบร้อยแล้ว`, {
 		position: 'top-right',
 		autoClose: 1200,

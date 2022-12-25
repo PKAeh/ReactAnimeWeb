@@ -15,7 +15,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
 import { getTabsValue, moveToList, unFavorite } from '../../store/slicer'
-import { toastDeleteFavorite, toastMoveFavorite } from '../../utils/toast'
+import { toastUnFavorite, toastMoveFavorite } from '../../utils/toast'
 import type { AnimeResponse } from '../../services/anime/animeResponse'
 
 interface FavoriteAnimeItemProps {
@@ -49,7 +49,7 @@ const FavoriteAnimeItem = ({
 	const clickLike = (event: React.MouseEvent<HTMLButtonElement>): void => {
 		event.stopPropagation()
 		dispatch(unFavorite(data))
-		toastDeleteFavorite(data.attributes.canonicalTitle)
+		toastUnFavorite(data.attributes.canonicalTitle)
 	}
 
 	const clickToPage = (): void => {
