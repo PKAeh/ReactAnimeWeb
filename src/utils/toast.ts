@@ -9,7 +9,7 @@ export const toastAddFavorite = (title: string): void => {
 		pauseOnHover: true,
 		draggable: true,
 		progress: undefined,
-		theme: 'light'
+		theme: 'dark'
 	})
 }
 
@@ -22,7 +22,7 @@ export const toastUnFavorite = (title: string): void => {
 		pauseOnHover: true,
 		draggable: true,
 		progress: undefined,
-		theme: 'light'
+		theme: 'dark'
 	})
 }
 
@@ -35,7 +35,7 @@ export const toastMoveFavorite = (title: string, listName: string): void => {
 		pauseOnHover: true,
 		draggable: true,
 		progress: undefined,
-		theme: 'light'
+		theme: 'dark'
 	})
 }
 
@@ -48,6 +48,6 @@ export const toastError = (message: string): void => {
 		pauseOnHover: true,
 		draggable: true,
 		progress: undefined,
-		theme: 'light'
+		theme: 'dark'
 	})
 }
