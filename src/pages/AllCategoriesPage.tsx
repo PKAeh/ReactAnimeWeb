@@ -1,4 +1,5 @@
 import Grid from '@mui/material/Unstable_Grid2'
+import { useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { BaseLoader } from '../components/BaseLoader'
 import BasePagination from '../components/BasePagination'
@@ -6,6 +7,7 @@ import AnimeList from '../components/anime/AnimeList'
 import AllCategoryAnimeTitle from '../components/navigators/category/AllCategoryAnimeTitle'
 import { useAllCategoryAnime } from '../hooks/useAllCategoryAnime'
 import { usePage } from '../hooks/usePage'
+import { toastError } from '../utils/toast'
 
 const AllCategoriesPage = (): JSX.Element => {
 	const [searchParams] = useSearchParams()
@@ -23,6 +25,12 @@ const AllCategoriesPage = (): JSX.Element => {
 	): void => {
 		setPage(page)
 	}
+
+	useEffect(() => {
+		if (allCategoryAnimeError) {
+			toastError(allCategoryAnimeError.message)
+		}
+	}, [allCategoryAnimeError])
 
 	if (allCategoryAnimeLoading) {
 		return <BaseLoader style={{ marginTop: '100px' }} />

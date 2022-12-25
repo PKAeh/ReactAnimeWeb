@@ -1,10 +1,12 @@
 import Grid from '@mui/material/Unstable_Grid2'
+import { useEffect } from 'react'
 import { BaseLoader } from '../components/BaseLoader'
 import BasePagination from '../components/BasePagination'
 import AnimeList from '../components/anime/AnimeList'
 import ShowAllAnimeTitle from '../components/showAllAnime/ShowAllAnimeTitle'
 import { usePage } from '../hooks/usePage'
 import { useShowAllAnime } from '../hooks/useShowAllAnime'
+import { toastError } from '../utils/toast'
 
 const ShowAllAnimePage = (): JSX.Element => {
 	const { page, setPage } = usePage()
@@ -18,6 +20,12 @@ const ShowAllAnimePage = (): JSX.Element => {
 	): void => {
 		setPage(page)
 	}
+
+	useEffect(() => {
+		if (showAllAnimeError) {
+			toastError(showAllAnimeError.message)
+		}
+	}, [showAllAnimeError])
 
 	if (showAllAnimeLoading) {
 		return <BaseLoader style={{ marginTop: '100px' }} />

@@ -1,4 +1,5 @@
 import Grid from '@mui/material/Unstable_Grid2'
+import { useEffect } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { BaseLoader } from '../components/BaseLoader'
 import BasePagination from '../components/BasePagination'
@@ -7,6 +8,7 @@ import SearchAnimeNotEmpty from '../components/searchAnime/SearchAnimeNotEmpty'
 import SearchAnimeTitle from '../components/searchAnime/SearchAnimeTitle'
 import { usePage } from '../hooks/usePage'
 import { useSearchAnime } from '../hooks/useSearchAnime'
+import { toastError } from '../utils/toast'
 
 const SearchPage = (): JSX.Element => {
 	const { page, setPage } = usePage()
@@ -24,6 +26,12 @@ const SearchPage = (): JSX.Element => {
 
 	const isSearchAnimeNotNullNotEmpty =
 		searchAnime !== undefined && searchAnime.data.length > 0
+
+	useEffect(() => {
+		if (searchAnimeError) {
+			toastError(searchAnimeError.message)
+		}
+	}, [searchAnimeError])
 
 	if (searchAnimeLoading) {
 		return <BaseLoader style={{ marginTop: '100px' }} />

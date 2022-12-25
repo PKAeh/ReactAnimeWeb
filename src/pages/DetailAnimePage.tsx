@@ -1,4 +1,5 @@
 import Grid from '@mui/material/Unstable_Grid2'
+import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { BaseLoader } from '../components/BaseLoader'
 import BasePagination from '../components/BasePagination'
@@ -9,6 +10,7 @@ import DetailAnimeTitle from '../components/detailAnime/detailAnimeTitle/DetailA
 import { useDetailAnime } from '../hooks/useDetailAnime'
 import { useDetailAnimeEpisodes } from '../hooks/useDetailAnimeEpisodes'
 import { usePage } from '../hooks/usePage'
+import { toastError } from '../utils/toast'
 
 const DetailAnimePage = (): JSX.Element => {
 	const { page, setPage } = usePage()
@@ -34,6 +36,18 @@ const DetailAnimePage = (): JSX.Element => {
 	): void => {
 		setPage(page)
 	}
+
+	useEffect(() => {
+		if (detailAnimeError) {
+			toastError(detailAnimeError.message)
+		}
+	}, [detailAnimeError])
+
+	useEffect(() => {
+		if (detailAnimeEpisodesError) {
+			toastError(detailAnimeEpisodesError.message)
+		}
+	}, [detailAnimeEpisodesError])
 
 	if (detailAnimeLoading || detailAnimeEpisodesLoading) {
 		return <BaseLoader style={{ paddingTop: '100px' }} />

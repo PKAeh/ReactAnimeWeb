@@ -1,11 +1,12 @@
 import Grid from '@mui/material/Unstable_Grid2'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { BaseLoader } from '../components/BaseLoader'
 import BasePagination from '../components/BasePagination'
 import AnimeList from '../components/anime/AnimeList'
 import HomePageTitle from '../components/homepage/HomePageTitle'
 import { useLastAnime } from '../hooks/useLastAnime'
 import { usePage } from '../hooks/usePage'
+import { toastError } from '../utils/toast'
 
 const HomePage = (): JSX.Element => {
 	const { page, setPage } = usePage()
@@ -18,6 +19,12 @@ const HomePage = (): JSX.Element => {
 	): void => {
 		setPage(page)
 	}
+
+	useEffect(() => {
+		if (lastAnimeError) {
+			toastError(lastAnimeError.message)
+		}
+	}, [lastAnimeError])
 
 	if (lastAnimeLoading) {
 		return <BaseLoader style={{ marginTop: '100px' }} />
