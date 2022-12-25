@@ -9,11 +9,7 @@ import { usePage } from '../hooks/usePage'
 
 const HomePage = (): JSX.Element => {
 	const { page, setPage } = usePage()
-	const [total, setTotal] = useState<number>(0)
-	const { lastAnimeLoading, lastAnime, lastAnimeError } = useLastAnime(
-		page,
-		total
-	)
+	const { lastAnimeLoading, lastAnime, lastAnimeError } = useLastAnime(page)
 	const count = Math.ceil(Math.min(lastAnime?.meta.count ?? 0, 10000) / 40)
 
 	const onChange = (
@@ -23,13 +19,10 @@ const HomePage = (): JSX.Element => {
 		setPage(page)
 	}
 
-	useEffect(() => {
-		setTotal(lastAnime?.meta.count ?? 0)
-	}, [lastAnime])
-
 	if (lastAnimeLoading) {
 		return <BaseLoader style={{ marginTop: '100px' }} />
 	}
+
 	return (
 		<Grid sx={{ padding: '10px', width: '100%' }}>
 			<Grid sx={{ padding: '15px 8px' }}>
