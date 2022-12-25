@@ -3,12 +3,18 @@ import { Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
 import {
 	addToFavorite,
 	isFavoriteSelector,
 	unFavorite
 } from '../../store/slicer'
+import {
+	toastAddFavorite,
+	toastDeleteFavorite,
+	toastError
+} from '../../utils/toast'
 import type { AnimeResponse } from '../../services/anime/animeResponse'
 
 interface AnimeItemProps {
@@ -37,18 +43,16 @@ const AnimeItem = ({ data }: AnimeItemProps): JSX.Element => {
 
 		if (isFavorite) {
 			dispatch(unFavorite(data))
-			console.log('ไม่ชอบ')
+			toastDeleteFavorite(data.attributes.canonicalTitle)
 		} else {
 			dispatch(addToFavorite(data))
-			console.log('ชอบ')
+			toastAddFavorite(data.attributes.canonicalTitle)
 		}
 	}
 
 	const clickToPage = (): void => {
 		window.scrollTo(0, 0)
 		navigate(`/anime/${data.id}`)
-
-		console.log('หน้าอนิเมะ')
 	}
 
 	return (
