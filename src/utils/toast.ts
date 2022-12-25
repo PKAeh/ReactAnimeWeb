@@ -3,7 +3,7 @@ import { toast } from 'react-toastify'
 export const toastAddFavorite = (title: string): void => {
 	toast.success(`เพิ่ม "${title}" เรียบร้อยแล้ว`, {
 		position: 'top-right',
-		autoClose: 1500,
+		autoClose: 1200,
 		hideProgressBar: true,
 		closeOnClick: true,
 		pauseOnHover: true,
@@ -14,9 +14,9 @@ export const toastAddFavorite = (title: string): void => {
 }
 
 export const toastDeleteFavorite = (title: string): void => {
-	toast.info(`ลบ "${title}" เรียบร้อยแล้ว`, {
+	toast.error(`ลบ "${title}" เรียบร้อยแล้ว`, {
 		position: 'top-right',
-		autoClose: 1500,
+		autoClose: 1200,
 		hideProgressBar: true,
 		closeOnClick: true,
 		pauseOnHover: true,
@@ -26,10 +26,10 @@ export const toastDeleteFavorite = (title: string): void => {
 	})
 }
 
-export const toastMoveFavorite = (title: string): void => {
-	toast.info(`ย้าย ชื่อเรื่อง "${title}" เรียบร้อยแล้ว`, {
+export const toastMoveFavorite = (title: string, listName: string): void => {
+	toast.info(`ย้าย "${title}" ไปที่ "${listName}" เรียบร้อยแล้ว`, {
 		position: 'top-right',
-		autoClose: 1500,
+		autoClose: 2500,
 		hideProgressBar: true,
 		closeOnClick: true,
 		pauseOnHover: true,
@@ -42,7 +42,7 @@ export const toastMoveFavorite = (title: string): void => {
 export const toastError = (message: string): void => {
 	toast.error(`${message}`, {
 		position: 'top-right',
-		autoClose: 1500,
+		autoClose: 2000,
 		hideProgressBar: true,
 		closeOnClick: true,
 		pauseOnHover: true,
