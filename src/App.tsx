@@ -5,8 +5,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Provider } from 'react-redux'
 import { RouterProvider } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
+import { PersistGate } from 'redux-persist/integration/react'
 import { router } from './routes/route'
-import { store } from './store/store'
+import { persistor, store } from './store/store'
 import 'react-toastify/dist/ReactToastify.css'
 
 const queryClient = new QueryClient()
@@ -25,12 +26,14 @@ const theme = createTheme({
 function App(): JSX.Element {
 	return (
 		<Provider store={store}>
-			<QueryClientProvider client={queryClient}>
-				<ThemeProvider theme={theme}>
-					<RouterProvider router={router} />
-					<ToastContainer />
-				</ThemeProvider>
-			</QueryClientProvider>
+			<PersistGate loading={null} persistor={persistor}>
+				<QueryClientProvider client={queryClient}>
+					<ThemeProvider theme={theme}>
+						<RouterProvider router={router} />
+						<ToastContainer />
+					</ThemeProvider>
+				</QueryClientProvider>
+			</PersistGate>
 		</Provider>
 	)
 }
