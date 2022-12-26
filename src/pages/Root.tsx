@@ -6,6 +6,8 @@ import CategoryBar from '../components/navigators/CategoryBar'
 import Footer from '../components/navigators/Footer'
 import YearBar from '../components/navigators/YearBar'
 
+const borderColor = 'rgba(160,160, 160, 0.2)'
+
 const Root = (): JSX.Element => (
 	<>
 		<AnimeAppBar />
@@ -18,16 +20,13 @@ const Root = (): JSX.Element => (
 				container
 				sx={{
 					backgroundColor: 'rgba(0,0,0,0.85)',
-					borderTop: '1px solid rgba(160,160, 160, 0.2)'
+					borderTop: `1px solid ${borderColor}`
 				}}
 			>
 				<Grid xs={8.8}>
 					<Outlet />
 				</Grid>
-				<Grid
-					xs={3.2}
-					sx={{ borderLeft: '1px solid rgba(160,160, 160, 0.2)' }}
-				>
+				<Grid xs={3.2} sx={{ borderLeft: `1px solid ${borderColor}` }}>
 					<Grid>
 						<CategoryBar />
 					</Grid>

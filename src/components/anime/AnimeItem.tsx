@@ -1,20 +1,15 @@
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
-import { Typography } from '@mui/material'
+import { Typography, useTheme } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
 import {
 	addToFavorite,
 	isFavoriteSelector,
 	unFavorite
 } from '../../store/slicer'
-import {
-	toastAddFavorite,
-	toastUnFavorite,
-	toastError
-} from '../../utils/toast'
+import { toastAddFavorite, toastUnFavorite } from '../../utils/toast'
 import type { AnimeResponse } from '../../services/anime/animeResponse'
 
 interface AnimeItemProps {
@@ -22,13 +17,17 @@ interface AnimeItemProps {
 }
 
 const AnimeItem = ({ data }: AnimeItemProps): JSX.Element => {
+	const theme = useTheme()
+	const navigate = useNavigate()
 	const isFavorite = useAppSelector(isFavoriteSelector(data.id))
 	const dispatch = useAppDispatch()
 
 	const [hoverPlayAnimeItem, setHoverPlayAnimeItem] = useState<boolean>(false)
 	const favoriteText = isFavorite ? 'ชื่นชอบ' : 'เพิ่มรายการที่ชอบ'
-	const bgFavorite = isFavorite ? 'rgb(245,14,14)' : 'rgb(0,0,0)'
-	const navigate = useNavigate()
+	const bgFavorite = isFavorite
+		? 'rgb(245,14,14)'
+		: theme.palette.primary.main
+	const bgAlpha = 'rgba(0,0,0,0.7)'
 
 	const onMouseEnter = (): void => {
 		setHoverPlayAnimeItem(true)
@@ -70,7 +69,7 @@ const AnimeItem = ({ data }: AnimeItemProps): JSX.Element => {
 						position: 'absolute',
 						content: '""',
 						display: 'block',
-						bgcolor: 'rgba(0,0,0,0.7)',
+						bgcolor: bgAlpha,
 						width: '100%',
 						height: '100%',
 						top: '0',
@@ -115,7 +114,7 @@ const AnimeItem = ({ data }: AnimeItemProps): JSX.Element => {
 			>
 				<Typography
 					sx={{
-						bgcolor: 'rgb(0,0,0)',
+						bgcolor: theme.palette.primary.main,
 						color: 'white',
 						fontSize: '0.7em',
 						padding: '1px 3px',
@@ -158,7 +157,7 @@ const AnimeItem = ({ data }: AnimeItemProps): JSX.Element => {
 					sx={{
 						textAlign: 'center',
 						padding: '10px',
-						bgcolor: 'rgba(0,0,0,0.7)',
+						bgcolor: bgAlpha,
 						fontWeight: 'bold',
 						color: 'white',
 						fontSize: '0.8em'

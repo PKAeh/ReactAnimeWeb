@@ -10,11 +10,13 @@ import {
 } from '@mui/material'
 
 import Grid from '@mui/material/Unstable_Grid2'
+import { useTheme } from '@mui/material/styles'
 import { useState } from 'react'
 import { useAppDispatch } from '../../hooks/reduxHooks'
 import { addNameMyFavorite } from '../../store/slicer'
 
 const AddItemFavorite = (): JSX.Element => {
+	const theme = useTheme()
 	const [open, setOpen] = useState(false)
 	const [nameList, setNameList] = useState<string>('')
 	const dispatch = useAppDispatch()
@@ -89,7 +91,7 @@ const AddItemFavorite = (): JSX.Element => {
 						onClick={handleCloseAddName}
 						sx={{
 							'&:hover': {
-								color: '#fd5529'
+								color: theme.palette.animeRed?.main
 							}
 						}}
 					>
@@ -99,7 +101,7 @@ const AddItemFavorite = (): JSX.Element => {
 						onClick={onClick}
 						sx={{
 							'&:hover': {
-								color: '#fd5529'
+								color: theme.palette.animeRed?.main
 							}
 						}}
 					>

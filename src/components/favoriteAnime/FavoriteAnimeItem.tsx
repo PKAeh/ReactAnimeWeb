@@ -11,6 +11,7 @@ import {
 	Typography
 } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
+import { useTheme } from '@mui/material/styles'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
@@ -27,6 +28,7 @@ const FavoriteAnimeItem = ({
 	data,
 	listNameAnimeFavorite
 }: FavoriteAnimeItemProps): JSX.Element => {
+	const theme = useTheme()
 	const dispatch = useAppDispatch()
 	const tabsValue = useAppSelector(getTabsValue)
 
@@ -171,7 +173,8 @@ const FavoriteAnimeItem = ({
 													onClick={handleClose(index)}
 													sx={{
 														'&:hover': {
-															color: '#fd5529'
+															color: theme.palette
+																.animeRed?.main
 														}
 													}}
 												>

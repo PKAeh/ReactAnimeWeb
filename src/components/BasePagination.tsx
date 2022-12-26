@@ -2,6 +2,7 @@ import Pagination from '@mui/material/Pagination'
 import ThemeProvider from '@mui/material/styles/ThemeProvider'
 import createTheme from '@mui/material/styles/createTheme'
 import { useSearchParams } from 'react-router-dom'
+import { animeRed } from '../theme/color'
 
 const theme = createTheme({
 	palette: {
@@ -18,10 +19,10 @@ const theme = createTheme({
 				root: {
 					color: 'white',
 					'&:hover': {
-						color: '#fd5529'
+						color: animeRed
 					},
 					'&.Mui-selected': {
-						color: '#fd5529'
+						color: animeRed
 					}
 				}
 			}

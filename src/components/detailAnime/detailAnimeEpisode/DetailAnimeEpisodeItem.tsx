@@ -1,5 +1,6 @@
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Unstable_Grid2'
+import { useTheme } from '@mui/material/styles'
 import type { DetailAnimeEpisodesResponse } from '../../../services/detailAnimeEpsiodes/detailAnimeEpisodesResponse'
 
 interface DetailAnimeEpisodeItemProps {
@@ -13,6 +14,7 @@ const DetailAnimeEpisodeItem = ({
 	imageCoverAnime,
 	episodeAnime
 }: DetailAnimeEpisodeItemProps): JSX.Element => {
+	const theme = useTheme()
 	const imageAnimeEpisode =
 		episodeAnime.attributes.thumbnail?.original ?? imageCoverAnime
 	const episode = episodeAnime.attributes.number
@@ -57,7 +59,7 @@ const DetailAnimeEpisodeItem = ({
 						borderLeft: '1px solid rgba(160,160, 160, 0.2)',
 						paddingLeft: '15px',
 						'&:hover': {
-							color: '#fd5529',
+							color: theme.palette.animeRed?.main,
 							cursor: 'pointer'
 						}
 					}}

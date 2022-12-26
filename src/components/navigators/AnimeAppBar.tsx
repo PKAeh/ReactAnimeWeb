@@ -7,6 +7,7 @@ import Grow from '@mui/material/Grow'
 import Toolbar from '@mui/material/Toolbar'
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Unstable_Grid2'
+import { useTheme } from '@mui/material/styles'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
@@ -17,6 +18,8 @@ import SearchInput from './SearchInput'
 let triggerTimeout: NodeJS.Timeout
 let showCountTimeout: NodeJS.Timeout
 const AnimeAppBar = (): JSX.Element => {
+	const theme = useTheme()
+	const redAnime = theme.palette.animeRed?.main
 	const { favorite: animeFavorite } = useParams()
 	const favorite = 'อนิเมะชื่นชอบ'
 	const countFavorite = useSelector(getFavoriteCount)
@@ -73,12 +76,12 @@ const AnimeAppBar = (): JSX.Element => {
 								fontFamily: 'monospace',
 								color:
 									animeFavorite === 'อนิเมะชื่นชอบ'
-										? '#fd5529'
+										? redAnime
 										: 'white',
 								fontSize: '1rem',
 								cursor: 'pointer',
 								'&:hover': {
-									color: '#fd5529'
+									color: redAnime
 								}
 							}}
 						>
@@ -108,7 +111,7 @@ const AnimeAppBar = (): JSX.Element => {
 											padding: '3px 0 0 3px',
 											fontWeight: 'bold',
 											fontSize: '0.8em',
-											color: '#fd5529'
+											color: redAnime
 										}}
 									>
 										{showCount &&

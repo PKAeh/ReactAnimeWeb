@@ -9,6 +9,17 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { router } from './routes/route'
 import { persistor, store } from './store/store'
 import 'react-toastify/dist/ReactToastify.css'
+import { animeRed } from './theme/color'
+
+declare module '@mui/material/styles' {
+	interface Palette {
+		animeRed?: Palette['primary']
+	}
+
+	interface PaletteOptions {
+		animeRed?: PaletteOptions['primary']
+	}
+}
 
 const queryClient = new QueryClient()
 
@@ -19,6 +30,9 @@ const theme = createTheme({
 		},
 		secondary: {
 			main: '#edf2ff'
+		},
+		animeRed: {
+			main: animeRed
 		}
 	}
 })

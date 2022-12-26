@@ -6,7 +6,8 @@ import {
 	DialogActions,
 	DialogContent,
 	DialogContentText,
-	ThemeProvider
+	ThemeProvider,
+	useTheme
 } from '@mui/material'
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
@@ -26,8 +27,9 @@ import {
 	getTabsValue,
 	setTabsValue
 } from '../store/slicer'
+import { animeRed } from '../theme/color'
 
-const theme = createTheme({
+const newTheme = createTheme({
 	palette: {
 		primary: {
 			main: 'rgb(0, 0, 5)'
@@ -44,10 +46,10 @@ const theme = createTheme({
 					textTransform: 'none',
 					padding: '10px',
 					'&:hover': {
-						color: '#fd5529'
+						color: animeRed
 					},
 					'&.Mui-selected': {
-						color: '#fd5529'
+						color: animeRed
 					},
 					'&.Mui-focusVisible': {
 						backgroundColor: '#d1eaff'
@@ -81,6 +83,8 @@ function TabPanel(props: TabPanelProps): JSX.Element {
 }
 
 const FavoritePage = (): JSX.Element => {
+	const theme = useTheme()
+	const redAnime = theme.palette.animeRed?.main
 	const favoriteList = useAppSelector(getFavorite)
 	const dispatch = useAppDispatch()
 	const value = useAppSelector(getTabsValue)
@@ -151,7 +155,7 @@ const FavoritePage = (): JSX.Element => {
 	}
 
 	return (
-		<ThemeProvider theme={theme}>
+		<ThemeProvider theme={newTheme}>
 			<Grid
 				sx={{
 					color: 'white',
@@ -171,7 +175,7 @@ const FavoritePage = (): JSX.Element => {
 							aria-label="scrollable auto tabs example"
 							TabIndicatorProps={{
 								style: {
-									backgroundColor: '#fd5529'
+									backgroundColor: redAnime
 								}
 							}}
 							sx={{
@@ -220,7 +224,7 @@ const FavoritePage = (): JSX.Element => {
 									sx={{
 										alignItems: 'center',
 										'&:hover': {
-											color: '#fd5529'
+											color: redAnime
 										}
 									}}
 								>
@@ -257,7 +261,7 @@ const FavoritePage = (): JSX.Element => {
 							onClick={handleCloseMessageDelete}
 							sx={{
 								'&:hover': {
-									color: '#fd5529'
+									color: redAnime
 								}
 							}}
 						>
@@ -267,7 +271,7 @@ const FavoritePage = (): JSX.Element => {
 							onClick={onClickDeleteList}
 							sx={{
 								'&:hover': {
-									color: '#fd5529'
+									color: redAnime
 								}
 							}}
 						>

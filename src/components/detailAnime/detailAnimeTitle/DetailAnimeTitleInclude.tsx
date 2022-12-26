@@ -1,5 +1,6 @@
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Unstable_Grid2'
+import { useTheme } from '@mui/material/styles'
 import { createSearchParams, useNavigate } from 'react-router-dom'
 import type { ApiResponse } from '../../../services/apiResponse'
 import type { DetailAnimeResponse } from '../../../services/detailAnime/detailAnimeResponse'
@@ -11,6 +12,7 @@ interface DetailAnimeTitleIncludeProps {
 const DetailAnimeTitleInclude = ({
 	data
 }: DetailAnimeTitleIncludeProps): JSX.Element => {
+	const theme = useTheme()
 	const navigate = useNavigate()
 
 	const onClick = (slug: string, name: string) => (): void => {
@@ -30,7 +32,7 @@ const DetailAnimeTitleInclude = ({
 							padding: '0 15px',
 							fontSize: '0.75em',
 							'&:hover': {
-								color: '#fd5529',
+								color: theme.palette.animeRed?.main,
 								cursor: 'pointer'
 							}
 						}}

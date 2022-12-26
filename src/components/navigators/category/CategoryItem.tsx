@@ -1,9 +1,9 @@
 import ArrowRightIcon from '@mui/icons-material/ArrowRight'
 import { Typography } from '@mui/material'
 import Grid from '@mui/material/Unstable_Grid2'
+import { useTheme } from '@mui/material/styles'
 import { useNavigate, createSearchParams } from 'react-router-dom'
 import type { CategoryResponse } from '../../../services/categories/categoryResponse'
-
 interface CategoryItemProps {
 	data: CategoryResponse
 	categoryName: string
@@ -13,6 +13,8 @@ const CategoryItem = ({
 	data,
 	categoryName
 }: CategoryItemProps): JSX.Element => {
+	const theme = useTheme()
+	const redAnime = theme.palette.animeRed?.main
 	const navigate = useNavigate()
 	const slug = data.attributes.slug
 	const name = data.attributes.title
@@ -40,7 +42,7 @@ const CategoryItem = ({
 				sx={{
 					color: 'rgb(160,160, 160)',
 					'&:hover': {
-						color: '#fd5529',
+						color: redAnime,
 						cursor: 'pointer'
 					}
 				}}
@@ -50,7 +52,7 @@ const CategoryItem = ({
 						fontSize: '18px',
 						color:
 							data.attributes.slug === categoryName
-								? '#fd5529'
+								? redAnime
 								: 'white'
 					}}
 				/>

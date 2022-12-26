@@ -32,7 +32,7 @@ const SearchIconWrapper = styled('div')(({ theme }) => ({
 	zIndex: '1',
 	cursor: 'pointer',
 	'&:hover': {
-		color: '#fd5529'
+		color: theme.palette.animeRed?.main
 	}
 }))
 
