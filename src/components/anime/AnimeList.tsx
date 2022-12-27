@@ -9,7 +9,7 @@ interface AnimeListProps {
 const AnimeList = ({ data }: AnimeListProps): JSX.Element => (
 	<Grid container spacing={1} sx={{ width: '100%', margin: '0' }}>
 		{data.map((resp) => (
-			<Grid key={resp.id} sx={{ width: '25%' }}>
+			<Grid key={resp.id} sx={{ width: { md: '25%', xs: '50%' } }}>
 				<AnimeItem data={resp} />
 			</Grid>
 		))}

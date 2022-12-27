@@ -164,9 +164,12 @@ const FavoritePage = (): JSX.Element => {
 			>
 				<Grid
 					container
-					sx={{ alignItems: 'center', bgcolor: 'rgba(0,0,0,0.5)' }}
+					sx={{
+						alignItems: 'center',
+						bgcolor: 'rgba(0,0,0,0.5)'
+					}}
 				>
-					<Grid xs>
+					<Grid xs sx={{ width: '100vw' }}>
 						<Tabs
 							value={value}
 							onChange={handleChangeTabs}
@@ -241,7 +244,7 @@ const FavoritePage = (): JSX.Element => {
 							</MenuItem>
 						</Menu>
 					</Grid>
-					<Grid>
+					<Grid xs={'auto'}>
 						<AddItemFavorite />
 					</Grid>
 				</Grid>

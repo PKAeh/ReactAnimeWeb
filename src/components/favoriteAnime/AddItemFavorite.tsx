@@ -58,7 +58,7 @@ const AddItemFavorite = (): JSX.Element => {
 				sx={{
 					color: 'white',
 					padding: '10px',
-					marginRight: '10px'
+					marginRight: { md: '10px' }
 				}}
 				onClick={handleClickOpenAddName}
 			>

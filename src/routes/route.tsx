@@ -38,7 +38,7 @@ export const router = createBrowserRouter([
 				element: <SearchPage />
 			},
 			{
-				path: '/favorite/:favorite',
+				path: '/favorite',
 				element: <FavoritePage />
 			}
 		]

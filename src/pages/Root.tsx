@@ -15,6 +15,7 @@ const Root = (): JSX.Element => (
 			sx={{
 				padding: '0 !important'
 			}}
+			maxWidth={'lg'}
 		>
 			<Grid
 				container
@@ -23,10 +24,10 @@ const Root = (): JSX.Element => (
 					borderTop: `1px solid ${borderColor}`
 				}}
 			>
-				<Grid xs={8.8}>
+				<Grid md={8.8}>
 					<Outlet />
 				</Grid>
-				<Grid xs={3.2} sx={{ borderLeft: `1px solid ${borderColor}` }}>
+				<Grid md={3.2} sx={{ borderLeft: `1px solid ${borderColor}` }}>
 					<Grid>
 						<CategoryBar />
 					</Grid>

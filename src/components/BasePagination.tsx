@@ -1,6 +1,8 @@
 import Pagination from '@mui/material/Pagination'
+import { useTheme } from '@mui/material/styles'
 import ThemeProvider from '@mui/material/styles/ThemeProvider'
 import createTheme from '@mui/material/styles/createTheme'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import { useSearchParams } from 'react-router-dom'
 import { animeRed } from '../theme/color'
 
@@ -42,6 +44,9 @@ const BasePagination = ({
 	onChange
 }: BasePaginationProps): JSX.Element => {
 	const [searchParams, setSearchParams] = useSearchParams()
+	const theme = useTheme()
+	const matches = useMediaQuery(theme.breakpoints.up('sm'))
+
 	const changeToPage = (
 		event: React.ChangeEvent<unknown>,
 		page: number
@@ -63,7 +68,7 @@ const BasePagination = ({
 				onChange={changeToPage}
 				count={count}
 				shape="rounded"
-				size="large"
+				size={matches ? 'small' : 'large'}
 				color="primary"
 			/>
 		</ThemeProvider>

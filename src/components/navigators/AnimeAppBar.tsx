@@ -21,7 +21,6 @@ const AnimeAppBar = (): JSX.Element => {
 	const theme = useTheme()
 	const redAnime = theme.palette.animeRed?.main
 	const { favorite: animeFavorite } = useParams()
-	const favorite = 'อนิเมะชื่นชอบ'
 	const countFavorite = useSelector(getFavoriteCount)
 	const [trigger, setTrigger] = useState<boolean>(true)
 	const [showCount, setShowCount] = useState<boolean>(false)
@@ -67,7 +66,7 @@ const AnimeAppBar = (): JSX.Element => {
 						</Typography>
 					</BaseLink>
 
-					<BaseLink to={`/favorite/${favorite}`}>
+					<BaseLink to={`/favorite`}>
 						<Grid
 							container
 							sx={{
@@ -125,9 +124,7 @@ const AnimeAppBar = (): JSX.Element => {
 
 					<Box sx={{ flexGrow: 1 }}></Box>
 
-					<Box>
-						<SearchInput />
-					</Box>
+					<Box>{/* <SearchInput /> */}</Box>
 				</Toolbar>
 			</Container>
 		</AppBar>
