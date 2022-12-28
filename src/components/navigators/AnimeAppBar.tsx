@@ -1,4 +1,6 @@
+import CloseIcon from '@mui/icons-material/Close'
 import FavoriteIcon from '@mui/icons-material/Favorite'
+import SearchIcon from '@mui/icons-material/Search'
 import { Fade } from '@mui/material'
 import AppBar from '@mui/material/AppBar'
 import Box from '@mui/material/Box'
@@ -11,6 +13,7 @@ import { useTheme } from '@mui/material/styles'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import { useIsDesktop } from '../../hooks/useIsDesktop'
 import { getFavoriteCount } from '../../store/slicer'
 import BaseLink from '../BaseLink'
 import SearchInput from './SearchInput'
@@ -22,8 +25,14 @@ const AnimeAppBar = (): JSX.Element => {
 	const redAnime = theme.palette.animeRed?.main
 	const { favorite: animeFavorite } = useParams()
 	const countFavorite = useSelector(getFavoriteCount)
+	const { isDesktop } = useIsDesktop()
 	const [trigger, setTrigger] = useState<boolean>(true)
 	const [showCount, setShowCount] = useState<boolean>(false)
+	const [showMobileSearch, setShowMobileSearch] = useState<boolean>(false)
+
+	const onClickMobileSearch = (): void => {
+		setShowMobileSearch(!showMobileSearch)
+	}
 
 	useEffect(() => {
 		setTrigger(false)
@@ -48,7 +57,15 @@ const AnimeAppBar = (): JSX.Element => {
 
 	return (
 		<AppBar position="sticky">
-			<Container maxWidth="lg" sx={{ padding: '0 0 0 20px !important' }}>
+			<Container
+				maxWidth="lg"
+				sx={{
+					padding: {
+						md: '0 0 0 20px !important',
+						xs: '0 0 0 15px !important'
+					}
+				}}
+			>
 				<Toolbar disableGutters sx={{ alignContent: 'stretch' }}>
 					<BaseLink to="/">
 						<Typography
@@ -62,7 +79,7 @@ const AnimeAppBar = (): JSX.Element => {
 								fontSize: '1.8rem'
 							}}
 						>
-							ANIMEJIMI
+							ANIMERIMU
 						</Typography>
 					</BaseLink>
 
@@ -71,7 +88,6 @@ const AnimeAppBar = (): JSX.Element => {
 							container
 							sx={{
 								mr: 2,
-								display: { xs: 'none', md: 'flex' },
 								fontFamily: 'monospace',
 								color:
 									animeFavorite === 'อนิเมะชื่นชอบ'
@@ -90,7 +106,7 @@ const AnimeAppBar = (): JSX.Element => {
 									noWrap
 									sx={{ fontSize: '1rem' }}
 								>
-									อนิเมะที่ชื่นชอบ
+									{isDesktop ? 'อนิเมะที่ชื่นชอบ' : 'Anime'}
 								</Typography>
 							</Grid>
 							<Grid>
@@ -122,10 +138,31 @@ const AnimeAppBar = (): JSX.Element => {
 						</Grid>
 					</BaseLink>
 
-					<Box sx={{ flexGrow: 1 }}></Box>
+					<Box
+						sx={{
+							flexGrow: 1
+						}}
+					></Box>
 
-					<Box>{/* <SearchInput /> */}</Box>
+					<Box
+						sx={{
+							display: { md: 'none' },
+							padding: '10px 15px 10px 10px'
+						}}
+						onClick={onClickMobileSearch}
+					>
+						{showMobileSearch ? (
+							<CloseIcon sx={{ color: redAnime }} />
+						) : (
+							<SearchIcon />
+						)}
+					</Box>
+
+					<Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+						<SearchInput />
+					</Box>
 				</Toolbar>
+				{showMobileSearch && <SearchInput />}
 			</Container>
 		</AppBar>
 	)
