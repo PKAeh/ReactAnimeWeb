@@ -1,4 +1,3 @@
-import { log } from 'console'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined'
 import {
