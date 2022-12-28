@@ -4,9 +4,10 @@ import ThemeProvider from '@mui/material/styles/ThemeProvider'
 import createTheme from '@mui/material/styles/createTheme'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { useSearchParams } from 'react-router-dom'
+import { useIsDesktop } from '../hooks/useIsDesktop'
 import { animeRed } from '../theme/color'
 
-const theme = createTheme({
+const newTheme = createTheme({
 	palette: {
 		primary: {
 			main: 'rgb(0, 0, 5)'
@@ -44,8 +45,7 @@ const BasePagination = ({
 	onChange
 }: BasePaginationProps): JSX.Element => {
 	const [searchParams, setSearchParams] = useSearchParams()
-	const theme = useTheme()
-	const matches = useMediaQuery(theme.breakpoints.up('sm'))
+	const { isDesktop } = useIsDesktop()
 
 	const changeToPage = (
 		event: React.ChangeEvent<unknown>,
@@ -62,13 +62,13 @@ const BasePagination = ({
 		})
 	}
 	return (
-		<ThemeProvider theme={theme}>
+		<ThemeProvider theme={newTheme}>
 			<Pagination
 				page={page}
 				onChange={changeToPage}
 				count={count}
 				shape="rounded"
-				size={matches ? 'small' : 'large'}
+				size={isDesktop ? 'large' : 'small'}
 				color="primary"
 			/>
 		</ThemeProvider>
