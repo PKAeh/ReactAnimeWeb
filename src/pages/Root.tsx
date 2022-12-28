@@ -24,7 +24,7 @@ const Root = (): JSX.Element => (
 					borderTop: `1px solid ${borderColor}`
 				}}
 			>
-				<Grid md={8.8}>
+				<Grid md={8.8} xs>
 					<Outlet />
 				</Grid>
 				<Grid md={3.2} sx={{ borderLeft: `1px solid ${borderColor}` }}>
