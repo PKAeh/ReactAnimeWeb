@@ -43,12 +43,24 @@ const SearchAnimeEmpty = ({
 				คำแนะนำ :
 			</Typography>
 			<Grid>
-				<Typography sx={{ fontSize: { sm: '0.9em', xs: '0.65em' } }}>
-					<ul>ตรวจสอบให้แน่ใจว่าสะกดถูกต้อง</ul>
-					<ul>
-						ลองค้นหาเป็นคำๆเช่น เรื่อง Sword Art Online II
-						ลองใส่แค่คำว่า Sword
-					</ul>
+				<Typography
+					sx={{
+						fontSize: { sm: '0.9em', xs: '0.65em' },
+						textIndent: '4em',
+						padding: { sm: '10px 0', xs: '5px' }
+					}}
+				>
+					ตรวจสอบให้แน่ใจว่าสะกดถูกต้อง
+				</Typography>
+				<Typography
+					sx={{
+						fontSize: { sm: '0.9em', xs: '0.65em' },
+						textIndent: '4em',
+						padding: { sm: '0 0 10px 0', xs: '5px' }
+					}}
+				>
+					ลองค้นหาเป็นคำๆเช่น เรื่อง Sword Art Online II
+					ลองใส่แค่คำว่า Sword
 				</Typography>
 			</Grid>
 		</Grid>

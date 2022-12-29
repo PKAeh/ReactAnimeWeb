@@ -37,9 +37,13 @@ const FavoriteAnimeEmpty = (): JSX.Element => {
 				</Typography>
 				<Grid>
 					<Typography
-						sx={{ fontSize: { sm: '0.9em', xs: '0.65em' } }}
+						sx={{
+							fontSize: { sm: '0.9em', xs: '0.65em' },
+							textIndent: '4em',
+							padding: { sm: '10px 0', xs: '5px 0' }
+						}}
 					>
-						<ul>{`กรุณาเพิ่มรายการโดยการกด "เพิ่มรายการที่ชอบ" `}</ul>
+						{`กรุณาเพิ่มรายการโดยการกด "เพิ่มรายการที่ชอบ"`}
 					</Typography>
 				</Grid>
 			</Grid>
