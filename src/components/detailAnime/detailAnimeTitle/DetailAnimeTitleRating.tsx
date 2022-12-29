@@ -18,11 +18,11 @@ const DetailAnimeTitleRating = ({
 			container
 			sx={{
 				alignItems: 'center',
-				padding: '10px 0 13px 0',
+				padding: { sm: '10px 0 13px 0', xs: '10px 0 3px 0' },
 				borderBottom: '1px solid rgba(160,160, 160, 0.2)'
 			}}
 		>
-			<Grid sx={{ marginRight: '20px' }}>
+			<Grid sx={{ marginRight: { sm: '20px', xs: '10px' } }}>
 				<Typography
 					sx={{
 						bgcolor: 'rgba(190,190,190,0.2)',
@@ -34,7 +34,7 @@ const DetailAnimeTitleRating = ({
 					{rating}
 				</Typography>
 			</Grid>
-			<Grid sx={{ marginRight: '20px' }}>
+			<Grid sx={{ marginRight: { sm: '20px' } }}>
 				<Grid>
 					<Rating
 						name=""
@@ -58,7 +58,8 @@ const DetailAnimeTitleRating = ({
 						bgcolor: 'rgba(190,190,190,0.2)',
 						fontSize: '0.7em',
 						padding: '2px 8px',
-						borderRadius: '3px'
+						borderRadius: '3px',
+						margin: { xs: '10px 0' }
 					}}
 				>
 					Your rating: {ratingValue}
