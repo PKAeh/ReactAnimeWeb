@@ -7,7 +7,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 const initialState: FavoriteStoreState = {
 	data: [
 		{
-			name: 'อนิมะชื่นชอบ',
+			name: 'อนิเมะชื่นชอบ',
 			data: []
 		}
 	],
