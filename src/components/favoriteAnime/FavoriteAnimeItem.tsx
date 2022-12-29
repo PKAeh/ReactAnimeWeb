@@ -14,6 +14,7 @@ import { useTheme } from '@mui/material/styles'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../hooks/reduxHooks'
+import { useIsDesktop } from '../../hooks/useIsDesktop'
 import { getTabsValue, moveToList, unFavorite } from '../../store/slicer'
 import { toastUnFavorite, toastMoveFavorite } from '../../utils/toast'
 import type { AnimeResponse } from '../../services/anime/animeResponse'
@@ -30,6 +31,7 @@ const FavoriteAnimeItem = ({
 	const theme = useTheme()
 	const dispatch = useAppDispatch()
 	const tabsValue = useAppSelector(getTabsValue)
+	const { isDesktop } = useIsDesktop()
 
 	const [hoverPlayAnimeItem, setHoverPlayAnimeItem] = useState<boolean>(false)
 
@@ -86,6 +88,42 @@ const FavoriteAnimeItem = ({
 			}
 		}
 
+	const showToolTip = (): JSX.Element => {
+		if (isDesktop) {
+			return (
+				<Tooltip title="ย้ายรายการ" placement="right" followCursor>
+					<Typography onClick={clickToMoveFavorite}>
+						<ArticleOutlinedIcon
+							aria-owns={
+								openMenu ? 'mouse-over-popover' : undefined
+							}
+							sx={{
+								bgcolor: 'rgba(0,0,0,0.8)',
+								color: 'white',
+								borderRadius: '3px',
+								fontSize: '1.4em'
+							}}
+						/>
+					</Typography>
+				</Tooltip>
+			)
+		} else {
+			return (
+				<Typography onClick={clickToMoveFavorite}>
+					<ArticleOutlinedIcon
+						aria-owns={openMenu ? 'mouse-over-popover' : undefined}
+						sx={{
+							bgcolor: 'rgba(0,0,0,0.8)',
+							color: 'white',
+							borderRadius: '3px',
+							fontSize: '1.4em'
+						}}
+					/>
+				</Typography>
+			)
+		}
+	}
+
 	return (
 		<Grid
 			sx={{
@@ -122,21 +160,7 @@ const FavoriteAnimeItem = ({
 					zIndex: openMenu ? '5' : '3'
 				}}
 			>
-				<Tooltip title="ย้ายรายการ" placement="right" followCursor>
-					<Typography onClick={clickToMoveFavorite}>
-						<ArticleOutlinedIcon
-							aria-owns={
-								openMenu ? 'mouse-over-popover' : undefined
-							}
-							sx={{
-								bgcolor: 'rgba(0,0,0,0.8)',
-								color: 'white',
-								borderRadius: '3px',
-								fontSize: '1.4em'
-							}}
-						/>
-					</Typography>
-				</Tooltip>
+				{showToolTip()}
 				<Popper
 					id="mouse-over-popover"
 					anchorEl={anchorEl}

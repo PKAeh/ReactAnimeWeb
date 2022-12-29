@@ -22,6 +22,7 @@ import AddItemFavorite from '../components/favoriteAnime/AddItemFavorite'
 import FavoriteAnimeEmpty from '../components/favoriteAnime/FavoriteAnimeEmpty'
 import FavoriteAnimeList from '../components/favoriteAnime/FavoriteAnimeList'
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks'
+import { useIsDesktop } from '../hooks/useIsDesktop'
 import { usePage } from '../hooks/usePage'
 import {
 	deleteNameMyFavorite,
@@ -90,6 +91,7 @@ const FavoritePage = (): JSX.Element => {
 	const favoriteList = useAppSelector(getFavorite)
 	const dispatch = useAppDispatch()
 	const value = useAppSelector(getTabsValue)
+	const { isDesktop } = useIsDesktop()
 	const [indexNameFavorite, setIndexNameFavorite] = useState<number>(0)
 	const [openNotEmpty, setOpenNotEmpty] = useState<boolean>(false)
 
@@ -190,28 +192,53 @@ const FavoritePage = (): JSX.Element => {
 							}}
 						>
 							{listNameAnimeFavorite.map(
-								(resp, index): JSX.Element => (
-									<Tooltip
-										key={index}
-										title={
-											index > 0 ? 'คลิกขวาเพื่อลบ' : ''
-										}
-										placement="right"
-										followCursor
-									>
-										<Tab
-											label={resp}
-											onContextMenu={(event): void => {
-												index > 0
-													? handleContextMenu(
-															event,
-															index
-													  )
-													: undefined
-											}}
-										/>
-									</Tooltip>
-								)
+								(resp, index): JSX.Element => {
+									if (isDesktop) {
+										return (
+											<Tooltip
+												key={index}
+												title={
+													index > 0
+														? 'คลิกขวาเพื่อลบ'
+														: ''
+												}
+												placement="right"
+												followCursor
+											>
+												<Tab
+													label={resp}
+													onContextMenu={(
+														event
+													): void => {
+														index > 0
+															? handleContextMenu(
+																	event,
+																	index
+															  )
+															: undefined
+													}}
+												/>
+											</Tooltip>
+										)
+									} else {
+										return (
+											<Tab
+												key={index}
+												label={resp}
+												onContextMenu={(
+													event
+												): void => {
+													index > 0
+														? handleContextMenu(
+																event,
+																index
+														  )
+														: undefined
+												}}
+											/>
+										)
+									}
+								}
 							)}
 						</Tabs>
 						<Menu
