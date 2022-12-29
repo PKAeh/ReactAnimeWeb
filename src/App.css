@@ -1,8 +1,10 @@
 body{
-  background-image: url('/src/assets/images/bgImagePage.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  background: url('/src/assets/images/bgImagePage.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
+  height: 100%;
 }
 
 
