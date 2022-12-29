@@ -13,32 +13,36 @@ const DetailAnimeTitleCategory = ({
 	const theme = useTheme()
 	return (
 		<Grid container sx={{ alignItems: 'center', paddingTop: '10px' }}>
-			<Typography
-				sx={{
-					width: '58px',
-					fontSize: '0.8em',
-					'&:hover': {
-						color: theme.palette.animeRed?.main,
-						cursor: 'pointer'
-					}
-				}}
-			>
-				{name}
-			</Typography>
-			{titleAnime && (
+			<Grid>
 				<Typography
 					sx={{
-						borderLeft: '1px solid rgba(160,160, 160, 0.2)',
-						padding: '0 10px',
-						fontSize: '0.75em',
+						width: '58px',
+						fontSize: '0.8em',
 						'&:hover': {
 							color: theme.palette.animeRed?.main,
 							cursor: 'pointer'
 						}
 					}}
 				>
-					{titleAnime}
+					{name}
 				</Typography>
+			</Grid>
+			{titleAnime && (
+				<Grid xs>
+					<Typography
+						sx={{
+							borderLeft: '1px solid rgba(160,160, 160, 0.2)',
+							padding: '0 10px',
+							fontSize: '0.75em',
+							'&:hover': {
+								color: theme.palette.animeRed?.main,
+								cursor: 'pointer'
+							}
+						}}
+					>
+						{titleAnime}
+					</Typography>
+				</Grid>
 			)}
 		</Grid>
 	)

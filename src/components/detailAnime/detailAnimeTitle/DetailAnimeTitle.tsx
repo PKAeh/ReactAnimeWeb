@@ -18,7 +18,13 @@ const DetailAnimeTitle = ({ data }: DetailAnimeTitleProps): JSX.Element => {
 		Math.floor(Number(data.data[0].attributes.averageRating)) / 10
 
 	return (
-		<Grid container sx={{ color: 'white', padding: '20px 25px 25px 25px' }}>
+		<Grid
+			container
+			sx={{
+				color: 'white',
+				padding: { sm: '20px 25px 25px 25px', xs: '15px' }
+			}}
+		>
 			<Grid>
 				<Grid
 					sx={{
@@ -29,7 +35,7 @@ const DetailAnimeTitle = ({ data }: DetailAnimeTitleProps): JSX.Element => {
 					}}
 				></Grid>
 			</Grid>
-			<Grid xs sx={{ paddingLeft: '20px' }}>
+			<Grid sm sx={{ paddingLeft: { sm: '20px' } }}>
 				<Grid
 					sx={{
 						paddingBottom: '10px',
@@ -49,9 +55,16 @@ const DetailAnimeTitle = ({ data }: DetailAnimeTitleProps): JSX.Element => {
 					name="ชื่อเรื่อง"
 				/>
 				<DetailAnimeTitleCategory titleAnime={''} name="หมวดหมู่" />
-				<Grid container sx={{ alignItems: 'center' }}>
-					<DetailAnimeTitleCategory titleAnime={''} name="ประเภท" />
-					<DetailAnimeTitleInclude data={data} />
+				<Grid container sx={{ alignItems: 'top' }}>
+					<Grid>
+						<DetailAnimeTitleCategory
+							titleAnime={''}
+							name="ประเภท"
+						/>
+					</Grid>
+					<Grid xs>
+						<DetailAnimeTitleInclude data={data} />
+					</Grid>
 				</Grid>
 			</Grid>
 		</Grid>

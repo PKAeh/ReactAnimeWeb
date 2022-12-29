@@ -19,7 +19,7 @@ const DetailAnimeHeader = ({ data }: DetailAnimeHeaderProps): JSX.Element => {
 			<Grid
 				container
 				sx={{
-					padding: '15px 0 15px 25px',
+					padding: { sm: '15px 0 15px 25px', xs: '15px' },
 					color: 'rgb(190,190, 190)',
 					alignItems: 'center'
 				}}

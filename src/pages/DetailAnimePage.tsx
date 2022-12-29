@@ -70,15 +70,15 @@ const DetailAnimePage = (): JSX.Element => {
 					/>
 				)}
 			</Grid>
-			<Grid sx={{ paddingBottom: '25px' }}>
-				{countEpisode > 20 && (
+			{countEpisode > 20 && (
+				<Grid sx={{ paddingBottom: '25px' }}>
 					<BasePagination
 						page={page}
 						count={count}
 						onChange={onChange}
 					/>
-				)}
-			</Grid>
+				</Grid>
+			)}
 		</Grid>
 	)
 }

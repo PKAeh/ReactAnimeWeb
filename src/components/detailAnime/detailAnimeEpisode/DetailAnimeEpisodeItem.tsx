@@ -29,6 +29,7 @@ const DetailAnimeEpisodeItem = ({
 			}}
 		>
 			<Grid
+				xs={'auto'}
 				sx={{
 					width: '100px',
 					height: '60px',
@@ -36,12 +37,11 @@ const DetailAnimeEpisodeItem = ({
 					backgroundSize: 'cover'
 				}}
 			></Grid>
-			<Grid>
+			<Grid xs={'auto'}>
 				<Typography
 					sx={{
-						padding: '0 20px',
+						padding: { sm: '0 20px', xs: '0 10px' },
 						fontWeight: 'bold',
-						width: '50px',
 						textAlign: 'center',
 						color: 'rgb(190,190, 190)',
 						cursor: 'default',
@@ -51,7 +51,7 @@ const DetailAnimeEpisodeItem = ({
 					0 - {episode}
 				</Typography>
 			</Grid>
-			<Grid>
+			<Grid xs>
 				<Typography
 					sx={{
 						color: 'white',

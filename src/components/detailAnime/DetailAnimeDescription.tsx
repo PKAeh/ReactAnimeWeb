@@ -9,8 +9,8 @@ const DetailAnimeDescription = ({
 }: DetailAnimeDescriptionProps): JSX.Element => (
 	<Grid
 		sx={{
-			margin: '15px 25px 0 25px',
-			paddingBottom: '25px',
+			margin: { sm: '15px 25px 0 25px', xs: '15px 15px 0 15px' },
+			paddingBottom: { sm: '25px', xs: '20px' },
 			borderBottom: '1px solid rgba(160,160, 160, 0.2)'
 		}}
 	>

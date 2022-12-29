@@ -25,7 +25,7 @@ const DetailAnimeTitleInclude = ({
 	return (
 		<Grid container sx={{ paddingTop: '10px' }}>
 			{data.included?.map((resp) => (
-				<Grid key={resp.id}>
+				<Grid key={resp.id} sx={{ margin: '2px' }}>
 					<Typography
 						sx={{
 							borderLeft: '1px solid rgba(160,160, 160, 0.2)',
