@@ -5,7 +5,7 @@ interface SearchAnimeNotEmptyProps {
 	search: string
 }
 
-const SearchAnimeNotEmpty = ({
+const SearchAnimeEmpty = ({
 	search
 }: SearchAnimeNotEmptyProps): JSX.Element => (
 	<Grid
@@ -55,4 +55,4 @@ const SearchAnimeNotEmpty = ({
 	</Grid>
 )
 
-export default SearchAnimeNotEmpty
+export default SearchAnimeEmpty

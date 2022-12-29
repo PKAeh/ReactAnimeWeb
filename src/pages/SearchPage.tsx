@@ -4,7 +4,7 @@ import { useSearchParams } from 'react-router-dom'
 import { BaseLoader } from '../components/BaseLoader'
 import BasePagination from '../components/BasePagination'
 import AnimeList from '../components/anime/AnimeList'
-import SearchAnimeNotEmpty from '../components/searchAnime/SearchAnimeNotEmpty'
+import SearchAnimeEmpty from '../components/searchAnime/SearchAnimeEmpty'
 import SearchAnimeTitle from '../components/searchAnime/SearchAnimeTitle'
 import { usePage } from '../hooks/usePage'
 import { useSearchAnime } from '../hooks/useSearchAnime'
@@ -56,7 +56,7 @@ const SearchPage = (): JSX.Element => {
 					</Grid>
 				</>
 			) : (
-				<SearchAnimeNotEmpty search={search} />
+				<SearchAnimeEmpty search={search} />
 			)}
 		</Grid>
 	)
