@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createHashRouter } from 'react-router-dom'
 import AllCategoriesPage from '../pages/AllCategoriesPage'
 import DetailAnimePage from '../pages/DetailAnimePage'
 import FavoritePage from '../pages/FavoritePage'
@@ -8,7 +8,7 @@ import SearchPage from '../pages/SearchPage'
 import ShowAllAnimePage from '../pages/ShowAllAnimePage'
 import YearAnimePage from '../pages/YearAnimePage'
 
-export const router = createBrowserRouter([
+export const router = createHashRouter([
 	{
 		path: '/',
 		element: <Root />,
