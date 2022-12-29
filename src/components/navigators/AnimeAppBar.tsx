@@ -146,7 +146,7 @@ const AnimeAppBar = (): JSX.Element => {
 
 					<Box
 						sx={{
-							display: { md: 'none' },
+							display: { sm: 'none' },
 							padding: '10px 15px 10px 10px'
 						}}
 						onClick={onClickMobileSearch}
