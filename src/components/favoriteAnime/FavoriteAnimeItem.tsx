@@ -55,7 +55,6 @@ const FavoriteAnimeItem = ({
 
 	const clickToPage = (): void => {
 		if (!openMenu) {
-			window.scrollTo(0, 0)
 			navigate(`/anime/${data.id}`)
 		}
 	}

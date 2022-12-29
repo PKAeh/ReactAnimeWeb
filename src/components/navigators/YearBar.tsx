@@ -42,10 +42,6 @@ const YearBar = (): JSX.Element => {
 		'1971'
 	]
 
-	const onClick = (): void => {
-		window.scrollTo(0, 0)
-	}
-
 	return (
 		<Grid sx={{ padding: '5px 10px 5px 20px' }}>
 			<Grid
@@ -97,7 +93,6 @@ const YearBar = (): JSX.Element => {
 										cursor: 'pointer'
 									}
 								}}
-								onClick={onClick}
 							>
 								{year}
 							</Typography>
