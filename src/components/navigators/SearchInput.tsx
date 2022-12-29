@@ -62,9 +62,12 @@ const SearchInput = (): JSX.Element => {
 		key,
 		target
 	}: KeyboardEvent<HTMLInputElement>): void => {
-		const value = (target as HTMLInputElement).value.trim()
+		const input = target as HTMLInputElement
+		const value = input.value.trim()
+
 		if (key === 'Enter' && value.length > 0) {
 			changeToSearchPage(value)
+			input.blur()
 		}
 	}
 
