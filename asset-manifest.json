@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/ReactAnimeWeb/static/css/main.f11a469c.css",
+    "main.js": "/ReactAnimeWeb/static/js/main.1a9feba0.js",
+    "static/js/787.0fe84981.chunk.js": "/ReactAnimeWeb/static/js/787.0fe84981.chunk.js",
+    "static/media/bgImagePage.jpg": "/ReactAnimeWeb/static/media/bgImagePage.b3df540c020c43623538.jpg",
+    "static/media/bgFacebook.jpeg": "/ReactAnimeWeb/static/media/bgFacebook.0767606046c8fb51eaf1.jpeg",
+    "static/media/imageProflieFacebook.jpg": "/ReactAnimeWeb/static/media/imageProflieFacebook.9361615686f2cc396667.jpg",
+    "index.html": "/ReactAnimeWeb/index.html",
+    "main.f11a469c.css.map": "/ReactAnimeWeb/static/css/main.f11a469c.css.map",
+    "main.1a9feba0.js.map": "/ReactAnimeWeb/static/js/main.1a9feba0.js.map",
+    "787.0fe84981.chunk.js.map": "/ReactAnimeWeb/static/js/787.0fe84981.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f11a469c.css",
+    "static/js/main.1a9feba0.js"
+  ]
+}
