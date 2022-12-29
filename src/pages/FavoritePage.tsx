@@ -18,6 +18,7 @@ import Grid from '@mui/material/Unstable_Grid2'
 import { useState } from 'react'
 import BasePagination from '../components/BasePagination'
 import AddItemFavorite from '../components/favoriteAnime/AddItemFavorite'
+import FavoriteAnimeEmpty from '../components/favoriteAnime/FavoriteAnimeEmpty'
 import FavoriteAnimeList from '../components/favoriteAnime/FavoriteAnimeList'
 import { useAppDispatch, useAppSelector } from '../hooks/reduxHooks'
 import { usePage } from '../hooks/usePage'
@@ -289,6 +290,14 @@ const FavoritePage = (): JSX.Element => {
 					const startIndex = (page - 1) * limit
 					const endIndex = page * limit
 					const data = resp.data.slice(startIndex, endIndex)
+
+					if (resp.data.length === 0) {
+						return (
+							<TabPanel key={index} value={value} index={index}>
+								<FavoriteAnimeEmpty />
+							</TabPanel>
+						)
+					}
 					return (
 						<TabPanel key={index} value={value} index={index}>
 							<Grid sx={{ padding: '0 10px', width: '100%' }}>
