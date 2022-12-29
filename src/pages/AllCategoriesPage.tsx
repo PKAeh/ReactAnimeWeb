@@ -38,7 +38,7 @@ const AllCategoriesPage = (): JSX.Element => {
 	return (
 		<Grid sx={{ padding: '10px', width: '100%' }}>
 			<Grid sx={{ padding: '15px 8px' }}>
-				<AllCategoryAnimeTitle category={title ?? ''} />s
+				<AllCategoryAnimeTitle category={title ?? ''} />
 			</Grid>
 			<Grid sx={{ width: '100%' }}>
 				{allCategoryAnime && <AnimeList data={allCategoryAnime.data} />}
