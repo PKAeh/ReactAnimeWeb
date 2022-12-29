@@ -36,7 +36,7 @@ const Root = (): JSX.Element => {
 					</Grid>
 					<Grid
 						md={3.2}
-						sx={{ borderLeft: `1px solid ${borderColor}` }}
+						sx={{ borderLeft: { md: `1px solid ${borderColor}` } }}
 					>
 						<Grid>
 							<CategoryBar />
