@@ -145,8 +145,7 @@ const FavoriteAnimeItem = ({
 					placement="right"
 					disablePortal
 				>
-					{({ TransitionProps }): JSX.Element => (
-						// <Fade {...TransitionProps} timeout={350}>
+					{(): JSX.Element => (
 						<Paper
 							sx={{
 								bgcolor: 'rgba(80,80,80,0.8)',
@@ -185,7 +184,6 @@ const FavoriteAnimeItem = ({
 								</MenuList>
 							</ClickAwayListener>
 						</Paper>
-						// </Fade>
 					)}
 				</Popper>
 			</Grid>
