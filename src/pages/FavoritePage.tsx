@@ -7,6 +7,7 @@ import {
 	DialogContent,
 	DialogContentText,
 	ThemeProvider,
+	Tooltip,
 	useTheme
 } from '@mui/material'
 import Menu from '@mui/material/Menu'
@@ -190,18 +191,26 @@ const FavoritePage = (): JSX.Element => {
 						>
 							{listNameAnimeFavorite.map(
 								(resp, index): JSX.Element => (
-									<Tab
+									<Tooltip
 										key={index}
-										label={resp}
-										onContextMenu={(event): void => {
-											index > 0
-												? handleContextMenu(
-														event,
-														index
-												  )
-												: undefined
-										}}
-									/>
+										title={
+											index > 0 ? 'คลิกขวาเพื่อลบ' : ''
+										}
+										placement="right"
+										followCursor
+									>
+										<Tab
+											label={resp}
+											onContextMenu={(event): void => {
+												index > 0
+													? handleContextMenu(
+															event,
+															index
+													  )
+													: undefined
+											}}
+										/>
+									</Tooltip>
 								)
 							)}
 						</Tabs>
