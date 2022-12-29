@@ -82,8 +82,8 @@ const SearchInput = (): JSX.Element => {
 			pathname: 'search',
 			search: createSearchParams({ search }).toString()
 		})
-
 		setSearchText('')
+		window.scrollTo(0, 0)
 	}
 	return (
 		<Search>
