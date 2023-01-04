@@ -17,6 +17,7 @@ import Tabs, { tabsClasses } from '@mui/material/Tabs'
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Unstable_Grid2'
 import { useState } from 'react'
+import { useLongPress } from 'use-long-press'
 import BasePagination from '../components/BasePagination'
 import AddItemFavorite from '../components/favoriteAnime/AddItemFavorite'
 import FavoriteAnimeEmpty from '../components/favoriteAnime/FavoriteAnimeEmpty'
@@ -119,6 +120,20 @@ const FavoritePage = (): JSX.Element => {
 		mouseY: number
 	} | null>(null)
 
+	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
+
+	const bind = useLongPress(
+		(event, { context }) => {
+			if ((context as number) > 0) {
+				setAnchorEl(event.nativeEvent.target as HTMLElement)
+				setIndexNameFavorite(context as number)
+			}
+		},
+		{
+			captureEvent: true
+		}
+	)
+
 	const handleContextMenu = (
 		event: React.MouseEvent,
 		index: number
@@ -137,10 +152,12 @@ const FavoritePage = (): JSX.Element => {
 
 	const handleClose = (): void => {
 		setContextMenu(null)
+		setAnchorEl(null)
 	}
 	const handleCloseRemoveName = (): void => {
 		const isEmpty = favoriteList[indexNameFavorite].data.length === 0
 		setContextMenu(null)
+		setAnchorEl(null)
 		if (isEmpty) {
 			onClickDeleteList()
 		} else {
@@ -225,16 +242,7 @@ const FavoritePage = (): JSX.Element => {
 											<Tab
 												key={index}
 												label={resp}
-												onContextMenu={(
-													event
-												): void => {
-													index > 0
-														? handleContextMenu(
-																event,
-																index
-														  )
-														: undefined
-												}}
+												{...bind(index)}
 											/>
 										)
 									}
@@ -242,9 +250,14 @@ const FavoritePage = (): JSX.Element => {
 							)}
 						</Tabs>
 						<Menu
-							open={contextMenu !== null}
+							open={contextMenu !== null || anchorEl !== null}
 							onClose={handleClose}
-							anchorReference="anchorPosition"
+							anchorReference={
+								contextMenu !== null
+									? 'anchorPosition'
+									: undefined
+							}
+							anchorEl={anchorEl}
 							anchorPosition={
 								contextMenu !== null
 									? {
