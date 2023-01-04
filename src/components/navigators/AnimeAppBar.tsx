@@ -88,12 +88,10 @@ const AnimeAppBar = (): JSX.Element => {
 							container
 							sx={{
 								mr: 2,
-								fontFamily: 'monospace',
 								color:
 									animeFavorite === 'อนิเมะชื่นชอบ'
 										? redAnime
 										: 'white',
-								fontSize: '1rem',
 								cursor: 'pointer',
 								'&:hover': {
 									color: redAnime
@@ -104,7 +102,9 @@ const AnimeAppBar = (): JSX.Element => {
 								<Typography
 									variant="h6"
 									noWrap
-									sx={{ fontSize: '1rem' }}
+									sx={{
+										fontSize: '1rem'
+									}}
 								>
 									{isDesktop ? 'อนิเมะที่ชื่นชอบ' : 'Anime'}
 								</Typography>
@@ -126,7 +126,8 @@ const AnimeAppBar = (): JSX.Element => {
 											padding: '3px 0 0 3px',
 											fontWeight: 'bold',
 											fontSize: '0.8em',
-											color: redAnime
+											color: redAnime,
+											fontFamily: 'monospace'
 										}}
 									>
 										{showCount &&
