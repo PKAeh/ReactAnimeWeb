@@ -12,7 +12,7 @@ import Grid from '@mui/material/Unstable_Grid2'
 import { useTheme } from '@mui/material/styles'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import { useIsDesktop } from '../../hooks/useIsDesktop'
 import { getFavoriteCount } from '../../store/slicer'
 import BaseLink from '../BaseLink'
@@ -23,7 +23,7 @@ let showCountTimeout: NodeJS.Timeout
 const AnimeAppBar = (): JSX.Element => {
 	const theme = useTheme()
 	const redAnime = theme.palette.animeRed?.main
-	const { favorite: animeFavorite } = useParams()
+	const location = useLocation()
 	const countFavorite = useSelector(getFavoriteCount)
 	const { isDesktop } = useIsDesktop()
 	const [trigger, setTrigger] = useState<boolean>(true)
@@ -88,10 +88,9 @@ const AnimeAppBar = (): JSX.Element => {
 							container
 							sx={{
 								mr: 2,
-								color:
-									animeFavorite === 'อนิเมะชื่นชอบ'
-										? redAnime
-										: 'white',
+								color: location.pathname.includes('favorite')
+									? redAnime
+									: 'white',
 								cursor: 'pointer',
 								'&:hover': {
 									color: redAnime
