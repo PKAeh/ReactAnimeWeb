@@ -1,7 +1,5 @@
 # AnimeRimu
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 It is a website to show information about Anima. Use TypeScript and React with MUI to develop. It has a feature such as Responsive Design, showing anime lists by popularity, by year, by category, can keep anime in a favorite list, moving anime between favorite lists, can search anime, and showing anime info detail.
 Anime is a show in the list with pagination and keep what pages are on when refreshing.
 
